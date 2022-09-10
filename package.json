@@ -1,6 +1,12 @@
 {
   "name": "qr-code-generator",
   "version": "0.1.0",
+  "description": "QR code generator",
+  "author": {
+    "name": "Karel Kvítek",
+    "email": "karel.kvitek@seznam.cz",
+    "url": "https://karelkvitek.cz"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -15,6 +21,7 @@
   },
   "devDependencies": {
     "eslint": "8.23.0",
-    "eslint-config-next": "12.3.0"
+    "eslint-config-next": "12.3.0",
+    "prettier": "^2.7.1"
   }
 }
