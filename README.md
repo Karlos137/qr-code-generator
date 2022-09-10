@@ -7,6 +7,7 @@ Keywords:
 - JavaScript
 - React
 - Next.js
+- TailwindCSS
 - ESLint
 - Prettier
 

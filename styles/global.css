@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS RESET START */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    @apply box-border;
+  }
+
+  * {
+    @apply m-0;
+  }
+
+  html,
+  body {
+    @apply h-full;
+  }
+
+  body {
+    @apply leading-normal;
+    @apply antialiased;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    @apply block;
+    @apply max-w-full;
+  }
+
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply break-words;
+  }
+
+  #root,
+  #__next {
+    @apply isolate;
+  }
+}
+
+/* CSS RESET END */
