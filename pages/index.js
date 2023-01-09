@@ -1,14 +1,12 @@
 // React components
 import Seo from "../components/Seo"
-
-// React QRcode Logo
-import { QRCode } from "react-qrcode-logo"
+import QrCode from "../components/QrCode"
 
 export default function Home() {
   return (
     <>
       <Seo />
-      <QRCode value="test" />
+      <QrCode />
     </>
   )
 }
