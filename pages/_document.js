@@ -7,6 +7,7 @@ export default function Document() {
   return (
     <Html>
       <Head>
+        <meta name="robots" content="noindex, nofollow" />
         <Favicon />
       </Head>
       <body>
