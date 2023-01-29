@@ -6,7 +6,12 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      spacing: {
+        7.5: "1.875rem",
+        8.5: "2.125rem",
+      },
+    },
   },
   plugins: [],
 }
