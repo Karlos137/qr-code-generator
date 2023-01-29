@@ -1,3 +1,6 @@
+// Styles
+import "../styles/global.css"
+
 // Next.js - Google fonts
 import { Poppins } from "@next/font/google"
 
