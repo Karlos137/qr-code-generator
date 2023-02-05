@@ -9,7 +9,7 @@ import Logo from "../svgs/Logo"
 import NavList from "../NavList"
 
 // Store
-import useAppStore from "../../store/AppStore"
+import useAppStore from "../../store/appStore"
 
 const Navbar = () => {
   const setHamburgerMenuOpen = useAppStore(state => state.setHamburgerMenuOpen)

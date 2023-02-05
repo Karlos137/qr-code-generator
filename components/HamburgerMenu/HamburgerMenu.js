@@ -9,7 +9,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline"
 import { EnvelopeIcon } from "@heroicons/react/24/outline"
 
 // Store
-import useAppStore from "../../store/AppStore"
+import useAppStore from "../../store/appStore"
 
 const HamburgerMenu = () => {
   const setHamburgerMenuOpen = useAppStore(state => state.setHamburgerMenuOpen)

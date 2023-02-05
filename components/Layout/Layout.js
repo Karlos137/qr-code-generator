@@ -4,7 +4,7 @@ import Footer from "../Footer"
 import HamburgerMenu from "../HamburgerMenu"
 
 // Store
-import useAppStore from "../../store/AppStore"
+import useAppStore from "../../store/appStore"
 
 // Artsy Fresnel
 import { Media, MediaContextProvider } from "../../utils/media"
