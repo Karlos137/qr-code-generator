@@ -21,7 +21,7 @@ const InfoCards = () => {
             Stáhněte si svůj QR kód ve vámi preferovaném formátu
           </li>
         </ol>
-        <Button>Začít tvořit QR kód</Button>
+        <Button href="#top">Začít tvořit QR kód</Button>
       </Card>
       <Card orientation="left" id="co-je-to-qr-kod">
         <h2 className="mb-2 text-[21px] font-medium lg:mb-4">

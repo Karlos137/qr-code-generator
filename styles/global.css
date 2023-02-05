@@ -108,6 +108,10 @@ menu {
 
 /* CUSTOM */
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   @apply text-gray-800;
 }
