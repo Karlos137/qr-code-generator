@@ -12,7 +12,7 @@ const poppins = Poppins({
 function MyApp({ Component, pageProps }) {
   return (
     <div
-      className={`app ${poppins.className} flex min-h-screen flex-col bg-gray-100`}
+      className={`app ${poppins.className} flex h-full flex-col bg-gray-100`}
     >
       <Component {...pageProps} />
     </div>

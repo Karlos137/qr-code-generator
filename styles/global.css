@@ -105,3 +105,11 @@ menu {
 }
 
 /* CSS RESET END */
+
+/* CUSTOM */
+
+body {
+  @apply text-gray-800;
+}
+
+/* CUSTOM END */
