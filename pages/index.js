@@ -2,8 +2,8 @@
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 import QrGenerator from "../components/QrGenerator"
-import UrlForm from "../components/Forms/UrlForm"
 import IntroText from "../components/IntroText"
+import InfoCards from "../components/InfoCards"
 
 export default function Home() {
   return (
@@ -12,6 +12,7 @@ export default function Home() {
       <Layout>
         <IntroText />
         <QrGenerator />
+        <InfoCards />
       </Layout>
     </>
   )

@@ -11,7 +11,7 @@ const QrCode = () => {
 
   return (
     <div>
-      <QRCode value={value} bgColor={bgColor} fgColor={fgColor} />
+      <QRCode value={value} bgColor={bgColor} fgColor={fgColor} size={334} />
     </div>
   )
 }

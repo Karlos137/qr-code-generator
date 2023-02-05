@@ -29,12 +29,15 @@ const HamburgerMenu = () => {
       <main className="mb-8 px-5">
         <ul className="flex flex-col items-center gap-y-8">
           <li>
-            <Link className="text-lg hover:text-orange-400" href="#">
+            <Link className="text-lg hover:text-orange-400" href="#jak-na-to">
               Jak na to?
             </Link>
           </li>
           <li>
-            <Link className="text-lg hover:text-orange-400" href="#">
+            <Link
+              className="text-lg hover:text-orange-400"
+              href="#co-je-to-qr-kod"
+            >
               Co je to QR kód?
             </Link>
           </li>

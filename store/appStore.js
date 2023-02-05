@@ -5,6 +5,10 @@ const useAppStore = create(set => ({
   setHamburgerMenuOpen: value => {
     set({ hamburgerMenuOpen: value })
   },
+  formSelected: "url",
+  setFormSelected: value => {
+    set({ formSelected: value })
+  },
 }))
 
 export default useAppStore
