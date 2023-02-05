@@ -15,7 +15,7 @@ const HamburgerMenu = () => {
   const setHamburgerMenuOpen = useAppStore(state => state.setHamburgerMenuOpen)
 
   return (
-    <div className="fixed inset-0 flex h-full w-full flex-col bg-sky-600 text-white">
+    <div className="fixed inset-0 z-10 flex h-full w-full flex-col bg-sky-600 text-white">
       <header className="mb-[64px] flex items-center justify-between gap-x-4 px-[54px] py-7.5">
         <Logo fill="#fff" />
         <XMarkIcon
@@ -29,17 +29,26 @@ const HamburgerMenu = () => {
       <main className="mb-8 px-5">
         <ul className="flex flex-col items-center gap-y-8">
           <li>
-            <Link className="text-lg hover:text-orange-400" href="#jak-na-to">
+            <a
+              className="text-lg hover:text-orange-400"
+              href="#jak-na-to"
+              onClick={() => {
+                setHamburgerMenuOpen(false)
+              }}
+            >
               Jak na to?
-            </Link>
+            </a>
           </li>
           <li>
-            <Link
+            <a
               className="text-lg hover:text-orange-400"
               href="#co-je-to-qr-kod"
+              onClick={() => {
+                setHamburgerMenuOpen(false)
+              }}
             >
               Co je to QR kód?
-            </Link>
+            </a>
           </li>
         </ul>
       </main>
