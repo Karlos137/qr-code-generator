@@ -20,14 +20,6 @@ const WifiForm = () => {
       [e.target.name]: e.target.value,
     })
 
-    console.log(
-      `WIFI:T:WPA;S:${
-        e.target.name === "wifiName" ? e.target.value : values.wifiName
-      };P:${
-        e.target.name === "wifiPassword" ? e.target.value : values.wifiPassword
-      };`
-    )
-
     setValue(
       `WIFI:T:WPA;S:${
         e.target.name === "wifiName" ? e.target.value : values.wifiName
