@@ -1,6 +1,7 @@
 // React components
 import UrlForm from "./UrlForm"
 import TextForm from "./TextForm"
+import WifiForm from "./WifiForm"
 
 // Store
 import useAppStore from "../../store/appStore"
@@ -17,6 +18,8 @@ const Forms = () => {
         return <UrlForm />
       case FORMS.text:
         return <TextForm />
+      case FORMS.wifi:
+        return <WifiForm />
       default:
         return <UrlForm />
     }

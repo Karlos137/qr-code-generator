@@ -1,5 +1,5 @@
 // React components
-import Input from "../Input/Input"
+import TextArea from "../TextArea"
 
 // Store
 import useQrStore from "../../../store/qrStore"
@@ -14,8 +14,10 @@ const TextForm = () => {
 
   return (
     <div>
-      <Input
-        placeholder="Zadejte text"
+      <TextArea
+        id="text"
+        label="Zadejte text"
+        placeholder="Ahoj!"
         value={value}
         onChange={handleOnChange}
       />

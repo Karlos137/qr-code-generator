@@ -15,7 +15,9 @@ const UrlForm = () => {
   return (
     <form>
       <Input
-        placeholder="Zadejte url"
+        id="url"
+        label="Zadejte URL webové stránky"
+        placeholder="https://"
         value={value}
         onChange={handleOnChange}
       />

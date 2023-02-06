@@ -1,7 +1,7 @@
 const IntroText = () => {
   return (
     <div className="mx-auto mb-8 max-w-[1000px] px-5 text-center">
-      <h1 className="mb-2 text-[26px] font-medium uppercase">
+      <h1 className="mb-2 text-[1.625em] font-medium uppercase">
         QR kód generátor
       </h1>
       <p className="text-base md:text-lg">

@@ -116,4 +116,9 @@ body {
   @apply text-gray-800;
 }
 
+::selection {
+  @apply text-white;
+  @apply bg-sky-600;
+}
+
 /* CUSTOM END */

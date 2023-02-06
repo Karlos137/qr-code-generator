@@ -6,7 +6,9 @@ const InfoCards = () => {
   return (
     <div className="my-16 flex flex-col gap-10 px-5 lg:my-32 lg:gap-8">
       <Card orientation="right" id="jak-na-to">
-        <h2 className="mb-2 text-[21px] font-medium lg:mb-4">Jak na to?</h2>
+        <h2 className="mb-2 text-[1.3125rem] font-medium lg:mb-4">
+          Jak na to?
+        </h2>
         <p className="mb-2.5 lg:mb-4">
           QR kód vytvoříte jednoduše pomocí našeho generátoru výše.
         </p>
@@ -24,7 +26,7 @@ const InfoCards = () => {
         <Button href="#top">Začít tvořit QR kód</Button>
       </Card>
       <Card orientation="left" id="co-je-to-qr-kod">
-        <h2 className="mb-2 text-[21px] font-medium lg:mb-4">
+        <h2 className="mb-2 text-[1.3125rem] font-medium lg:mb-4">
           Co je to QR kód?
         </h2>
         <p className="mb-4">
