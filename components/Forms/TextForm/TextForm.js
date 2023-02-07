@@ -1,3 +1,6 @@
+// React
+import { useState } from "react"
+
 // React components
 import TextArea from "../TextArea"
 
@@ -5,10 +8,11 @@ import TextArea from "../TextArea"
 import useQrStore from "../../../store/qrStore"
 
 const TextForm = () => {
-  const value = useQrStore(state => state.value)
+  const [textValue, setTextValue] = useState("")
   const setValue = useQrStore(state => state.setValue)
 
   const handleOnChange = e => {
+    setTextValue(e.target.value)
     setValue(e.target.value)
   }
 
@@ -18,7 +22,7 @@ const TextForm = () => {
         id="text"
         label="Zadejte text"
         placeholder="Ahoj!"
-        value={value}
+        value={textValue}
         onChange={handleOnChange}
       />
     </div>

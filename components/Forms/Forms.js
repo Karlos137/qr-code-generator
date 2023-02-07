@@ -2,6 +2,8 @@
 import UrlForm from "./UrlForm"
 import TextForm from "./TextForm"
 import WifiForm from "./WifiForm"
+import EmailForm from "./EmailForm"
+import PhoneForm from "./PhoneForm"
 
 // Store
 import useAppStore from "../../store/appStore"
@@ -20,6 +22,10 @@ const Forms = () => {
         return <TextForm />
       case FORMS.wifi:
         return <WifiForm />
+      case FORMS.email:
+        return <EmailForm />
+      case FORMS.phone:
+        return <PhoneForm />
       default:
         return <UrlForm />
     }

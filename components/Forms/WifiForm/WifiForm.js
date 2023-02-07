@@ -8,23 +8,23 @@ import Input from "../Input"
 import useQrStore from "../../../store/qrStore"
 
 const WifiForm = () => {
-  const [values, setValues] = useState({
-    wifiName: "",
-    wifiPassword: "",
+  const [wifiValues, setWifiValues] = useState({
+    name: "",
+    password: "",
   })
   const setValue = useQrStore(state => state.setValue)
 
   const handleOnChange = e => {
-    setValues({
-      ...values,
+    setWifiValues({
+      ...wifiValues,
       [e.target.name]: e.target.value,
     })
 
     setValue(
       `WIFI:T:WPA;S:${
-        e.target.name === "wifiName" ? e.target.value : values.wifiName
+        e.target.name === "name" ? e.target.value : wifiValues.name
       };P:${
-        e.target.name === "wifiPassword" ? e.target.value : values.wifiPassword
+        e.target.name === "password" ? e.target.value : wifiValues.password
       };`
     )
   }
@@ -34,17 +34,17 @@ const WifiForm = () => {
       <Input
         id="wifi-name"
         label="Název sítě"
-        name="wifiName"
+        name="name"
         placeholder="Název sítě"
-        value={values.wifiName}
+        value={wifiValues.name}
         onChange={handleOnChange}
       />
       <Input
         id="wifi-password"
         label="Heslo"
-        name="wifiPassword"
+        name="password"
         placeholder="Heslo"
-        value={values.wifiPassword}
+        value={wifiValues.password}
         onChange={handleOnChange}
       />
     </form>
