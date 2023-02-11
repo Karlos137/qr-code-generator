@@ -8,6 +8,9 @@ import {
   IdentificationIcon,
 } from "@heroicons/react/24/outline"
 
+// Tailwind Merge
+import { twMerge } from "tailwind-merge"
+
 const Button = ({ icon, text, active = false, onClick }) => {
   const iconClassNames = `${
     active ? "h-4.5 w-4.5 text-white" : "h-4.5 w-4.5 text-sky-500"
@@ -33,8 +36,10 @@ const Button = ({ icon, text, active = false, onClick }) => {
   return (
     <button
       onClick={onClick}
-      className={`flex min-w-[72px] flex-col items-center gap-2 rounded-[20px] bg-white py-2 px-3 hover:shadow-md lg:min-w-[100px] 
-    lg:flex-row ${active ? "bg-orange-500 text-white" : ""}`}
+      className={twMerge(
+        "flex min-w-[72px] flex-col items-center gap-2 rounded-[20px] bg-white py-2 px-3 hover:shadow-md lg:min-w-[100px] lg:flex-row",
+        active ? "bg-orange-500 text-white" : ""
+      )}
     >
       {getIcon()} {text}
     </button>
