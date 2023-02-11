@@ -63,7 +63,7 @@ const QrGeneratorMenu = () => {
           }}
         />
       </li>
-      <li>
+      {/* <li>
         <Button
           icon="businessCard"
           text="Vizitka"
@@ -72,7 +72,7 @@ const QrGeneratorMenu = () => {
             setFormSelected(FORMS.businessCard)
           }}
         />
-      </li>
+      </li> */}
     </ul>
   )
 }

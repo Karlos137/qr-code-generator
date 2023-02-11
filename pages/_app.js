@@ -7,12 +7,13 @@ import { Poppins } from "@next/font/google"
 const poppins = Poppins({
   weight: ["300", "400", "500", "600"],
   subsets: ["latin-ext"],
+  adjustFontFallback: false,
 })
 
 function MyApp({ Component, pageProps }) {
   return (
     <div
-      className={`app ${poppins.className} flex min-h-screen flex-col bg-gray-100`}
+      className={`${poppins.className} app flex min-h-screen flex-col bg-gray-100`}
     >
       <Component {...pageProps} />
     </div>
