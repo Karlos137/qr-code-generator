@@ -3,14 +3,19 @@ import { useState } from "react"
 
 // React components
 import Input from "../Input"
+import Dropdown from "../Dropdown"
 
 // Store
 import useQrStore from "../../../store/qrStore"
+
+// Constants
+import { securityOptions } from "./WifiForn.constants"
 
 const WifiForm = () => {
   const [wifiValues, setWifiValues] = useState({
     name: "",
     password: "",
+    security: "WPA",
   })
   const setValue = useQrStore(state => state.setValue)
 
@@ -21,11 +26,24 @@ const WifiForm = () => {
     })
 
     setValue(
-      `WIFI:T:WPA;S:${
+      `WIFI:T:${wifiValues.security};S:${
         e.target.name === "name" ? e.target.value : wifiValues.name
       };P:${
         e.target.name === "password" ? e.target.value : wifiValues.password
       };`
+    )
+  }
+
+  const handleOptionChange = optionValue => {
+    setWifiValues({
+      ...wifiValues,
+      security: optionValue,
+    })
+
+    setValue(
+      `WIFI:T:${optionValue ? optionValue : wifiValues.security};S:${
+        wifiValues.name
+      };P:${wifiValues.password};`
     )
   }
 
@@ -38,6 +56,11 @@ const WifiForm = () => {
         placeholder="Název sítě"
         value={wifiValues.name}
         onChange={handleOnChange}
+      />
+      <Dropdown
+        label="Zabezpečení"
+        options={securityOptions}
+        onOptionClick={handleOptionChange}
       />
       <Input
         id="wifi-password"

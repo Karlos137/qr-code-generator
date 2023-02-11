@@ -12,7 +12,7 @@ const QrGeneratorMenu = () => {
   const setFormSelected = useAppStore(state => state.setFormSelected)
 
   return (
-    <ul className="flex flex-wrap gap-6 rounded-[30px] bg-white px-1.5 py-5 lg:max-w-[120px] lg:flex-col lg:flex-nowrap lg:py-6">
+    <ul className="lg:gap:6 flex flex-wrap justify-center gap-4 rounded-[30px] bg-white px-1.5 py-4 lg:max-w-[120px] lg:flex-col lg:flex-nowrap lg:justify-start lg:py-6">
       <li>
         <Button
           icon="url"

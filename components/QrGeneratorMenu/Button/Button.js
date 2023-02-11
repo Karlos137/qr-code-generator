@@ -15,6 +15,7 @@ const Button = ({ icon, text, active = false, onClick }) => {
   const iconClassNames = `${
     active ? "h-4.5 w-4.5 text-white" : "h-4.5 w-4.5 text-sky-500"
   }`
+
   const getIcon = () => {
     switch (icon) {
       case "url":
