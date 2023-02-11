@@ -6,7 +6,7 @@ import Favicon from "../components/Favicon"
 
 export default function Document() {
   return (
-    <Html>
+    <Html lang="cs">
       <Head>
         <style
           type="text/css"

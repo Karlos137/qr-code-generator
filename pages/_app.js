@@ -7,6 +7,8 @@ import { Poppins } from "@next/font/google"
 const poppins = Poppins({
   weight: ["300", "400", "500", "600"],
   subsets: ["latin-ext"],
+  display: "swap",
+  style: ["normal", "italic"],
 })
 
 function MyApp({ Component, pageProps }) {
