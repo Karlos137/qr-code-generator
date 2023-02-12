@@ -5,8 +5,14 @@ const useQrStore = create(set => ({
   setValue: value => {
     set({ value: value })
   },
-  bgColor: "#fff",
-  fgColor: "#000",
+  bgColor: "#ffffff",
+  setBgColor: value => {
+    set({ bgColor: value })
+  },
+  fgColor: "#000000",
+  setFgColor: value => {
+    set({ fgColor: value })
+  },
 }))
 
 export default useQrStore

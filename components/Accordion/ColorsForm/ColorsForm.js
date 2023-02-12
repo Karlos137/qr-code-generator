@@ -1,22 +1,54 @@
 // React
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 // React components
 import Input from "../../Forms/Input"
 
+// Store
+import useQrStore from "../../../store/qrStore"
+
+// Constants
+import { HEX_COLOR_REGEX } from "../../../utils/constants"
+
 const ColorsForm = () => {
   const [colorValues, setColorValues] = useState({
     foreground: "#000000",
-    background: "#000000",
+    background: "#ffffff",
   })
 
+  const bgColor = useQrStore(state => state.bgColor)
+  const fgColor = useQrStore(state => state.fgColor)
+  const setBgColor = useQrStore(state => state.setBgColor)
+  const setFgColor = useQrStore(state => state.setFgColor)
+
+  useEffect(() => {
+    setColorValues({
+      foreground: fgColor,
+      background: bgColor,
+    })
+  }, [])
+
   const handleOnChange = e => {
-    console.log(e.target.value)
-    console.log(e.target.name)
     setColorValues({
       ...colorValues,
       [e.target.name]: e.target.value,
     })
+
+    switch (e.target.name) {
+      case "foreground":
+        if (HEX_COLOR_REGEX.test(e.target.value)) {
+          setFgColor(e.target.value)
+        }
+        break
+      case "background":
+        if (HEX_COLOR_REGEX.test(e.target.value)) {
+          setBgColor(e.target.value)
+        }
+        break
+      default:
+        setFgColor("#000000")
+        setBgColor("#ffffff")
+    }
   }
   return (
     <div>
@@ -28,7 +60,7 @@ const ColorsForm = () => {
           placeholder="#"
           value={colorValues.foreground}
           onChange={handleOnChange}
-          withColorForm={true}
+          withColorForm="fgColor"
         />
         <Input
           id="bg-color"
@@ -37,7 +69,7 @@ const ColorsForm = () => {
           placeholder="#"
           value={colorValues.background}
           onChange={handleOnChange}
-          withColorForm={true}
+          withColorForm="bgColor"
         />
       </div>
     </div>

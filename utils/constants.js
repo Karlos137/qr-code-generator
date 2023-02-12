@@ -15,3 +15,5 @@ export const FORMS = {
   phone: "phone",
   businessCard: "businessCard",
 }
+
+export const HEX_COLOR_REGEX = /^#([0-9a-fA-F]{3}){1,2}$/
