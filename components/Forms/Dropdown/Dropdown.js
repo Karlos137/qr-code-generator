@@ -12,7 +12,7 @@ const Dropdown = ({ label, options, onOptionClick }) => {
   const [value, setValue] = useState("Zabezpečení")
 
   return (
-    <div className="relative">
+    <div className="relative w-full max-w-[183px] shrink-0">
       <div className="mb-2 flex flex-col gap-1">
         <div className="text-sm font-light text-gray-500">{label}</div>
         <div

@@ -2,6 +2,7 @@
 import QrGeneratorMenu from "../QrGeneratorMenu"
 import QrCode from "../QrCode"
 import Forms from "../Forms/Forms"
+import Accordion from "../Accordion"
 
 // Constants
 import { FORMS } from "../../utils/constants"
@@ -38,6 +39,7 @@ const QrGenerator = () => {
           {getFormTitle()}
         </h2>
         <Forms />
+        <Accordion />
       </div>
       <QrCode />
     </div>

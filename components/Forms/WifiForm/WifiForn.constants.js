@@ -1,4 +1,4 @@
-export const securityOptions = [
+export const SECURITY_OPTIONS = [
   {
     id: "1",
     label: "WEP",

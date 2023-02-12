@@ -9,7 +9,7 @@ import Dropdown from "../Dropdown"
 import useQrStore from "../../../store/qrStore"
 
 // Constants
-import { securityOptions } from "./WifiForn.constants"
+import { SECURITY_OPTIONS } from "./WifiForn.constants"
 
 const WifiForm = () => {
   const [wifiValues, setWifiValues] = useState({
@@ -57,19 +57,21 @@ const WifiForm = () => {
         value={wifiValues.name}
         onChange={handleOnChange}
       />
-      <Dropdown
-        label="Zabezpečení"
-        options={securityOptions}
-        onOptionClick={handleOptionChange}
-      />
-      <Input
-        id="wifi-password"
-        label="Heslo"
-        name="password"
-        placeholder="Heslo"
-        value={wifiValues.password}
-        onChange={handleOnChange}
-      />
+      <div className="flex w-full gap-7.5">
+        <Input
+          id="wifi-password"
+          label="Heslo"
+          name="password"
+          placeholder="Heslo"
+          value={wifiValues.password}
+          onChange={handleOnChange}
+        />
+        <Dropdown
+          label="Zabezpečení"
+          options={SECURITY_OPTIONS}
+          onOptionClick={handleOptionChange}
+        />
+      </div>
     </form>
   )
 }

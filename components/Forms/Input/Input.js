@@ -1,6 +1,6 @@
 const Input = ({ type = "text", placeholder, id, label, ...rest }) => {
   return (
-    <div className="mb-2 flex flex-col gap-1">
+    <div className="grow-1 mb-2 flex flex-col gap-1">
       <label className="text-sm font-light text-gray-500" htmlFor={id}>
         {label}
       </label>
