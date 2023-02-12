@@ -57,7 +57,7 @@ const WifiForm = () => {
         value={wifiValues.name}
         onChange={handleOnChange}
       />
-      <div className="flex w-full gap-7.5">
+      <div className="w-full xl:flex xl:gap-7.5">
         <Input
           id="wifi-password"
           label="Heslo"
