@@ -32,7 +32,7 @@ const Input = ({
   }
 
   return (
-    <div className="mb-2 flex w-full shrink grow flex-col gap-1">
+    <div className="mb-2 flex w-auto shrink grow flex-col gap-1">
       <label className="text-sm font-light text-gray-500" htmlFor={id}>
         {label}
       </label>

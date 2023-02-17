@@ -52,7 +52,7 @@ const ColorsForm = () => {
   }
   return (
     <div>
-      <div className="flex justify-between gap-7.5">
+      <div className="flex flex-wrap justify-between gap-7.5">
         <Input
           id="fg-color"
           label="Popředí"

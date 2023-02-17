@@ -12,8 +12,12 @@ const UrlForm = () => {
   const setValue = useQrStore(state => state.setValue)
 
   const handleOnChange = e => {
-    setPhoneValue(e.target.value)
-    setValue(e.target.value)
+    const inputValue = e.target.value
+
+    if (/^\+?\d*$/.test(inputValue)) {
+      setPhoneValue(inputValue)
+      setValue(inputValue)
+    }
   }
 
   return (
@@ -22,11 +26,6 @@ const UrlForm = () => {
         id="phone"
         label="Telefonní číslo"
         placeholder="+420"
-        onKeyPress={event => {
-          if (!/[0-9]/.test(event.key)) {
-            event.preventDefault()
-          }
-        }}
         value={phoneValue}
         onChange={handleOnChange}
       />
