@@ -15,7 +15,7 @@ const HamburgerMenu = () => {
   const setHamburgerMenuOpen = useAppStore(state => state.setHamburgerMenuOpen)
 
   return (
-    <div className="fixed inset-0 z-10 flex h-full w-full flex-col bg-sky-600 text-white">
+    <div className="fixed inset-0 z-10 flex h-full w-full flex-col overflow-scroll bg-sky-600 text-white">
       <header className="mb-[64px] flex items-center justify-between gap-x-4 px-[54px] py-7.5">
         <Logo fill="#fff" />
         <XMarkIcon

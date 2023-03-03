@@ -1,3 +1,6 @@
+// React
+import { useEffect } from "react"
+
 // React components
 import Header from "../Header"
 import Footer from "../Footer"
@@ -11,6 +14,15 @@ import { Media, MediaContextProvider } from "../../utils/media"
 
 const Layout = ({ children }) => {
   const hamburgerMenuOpen = useAppStore(state => state.hamburgerMenuOpen)
+
+  useEffect(() => {
+    //Set overflow: hidden to body when menu open to prevent background scrolling
+    if (hamburgerMenuOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "initial"
+    }
+  }, [hamburgerMenuOpen])
 
   return (
     <>
