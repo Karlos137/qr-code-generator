@@ -73,7 +73,7 @@ const Input = ({
       {withColorForm ? (
         <div className="flex w-full items-center gap-4">
           <input
-            className="grow rounded-[20px] bg-gray-100 px-4 py-1.5 text-base placeholder:text-gray-500 focus:outline-sky-600"
+            className="w-full grow rounded-[20px] bg-gray-100 px-4 py-1.5 text-base placeholder:text-gray-500 focus:outline-sky-600"
             id={id}
             type={type}
             placeholder={placeholder}
@@ -83,6 +83,7 @@ const Input = ({
             {...rest}
           />
           <input
+            className="bg-gey-100 rounded-sm"
             type="color"
             value={getColorValue()}
             onChange={onChange}

@@ -153,7 +153,7 @@ const ColorsForm = () => {
   }
   return (
     <div>
-      <div className="flex flex-wrap justify-between gap-7.5">
+      <div className="flex flex-wrap justify-between gap-7.5 min-[1160px]:flex-nowrap">
         <Input
           id="fg-color"
           label="Popředí"
@@ -191,8 +191,9 @@ const ColorsForm = () => {
           }}
         />
         {colorfulCorners && (
-          <div className="mt-4 flex flex-wrap justify-between gap-7.5">
+          <div className="mt-4 flex flex-wrap justify-between gap-7.5 min-[1160px]:flex-nowrap">
             <div className="flex grow flex-col gap-2">
+              <div className="mb-1">Vnější rohy:</div>
               <Input
                 id="outer-lt-corner-color"
                 label="Levý horní roh"
@@ -221,7 +222,8 @@ const ColorsForm = () => {
                 withColorForm="outerLbCornerColor"
               />
             </div>
-            <div className="flex grow flex-col gap-2">
+            <div className="flex grow  flex-col gap-2">
+              <div className="mb-1">Vnitřní rohy:</div>
               <Input
                 id="inner-lt-corner-color"
                 label="Levý horní roh"
