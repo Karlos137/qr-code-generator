@@ -11,7 +11,7 @@ const QrCode = () => {
   const eyeColor = useQrStore(state => state.eyeColor)
 
   return (
-    <div className="mx-auto lg:sticky lg:top-0">
+    <div className="mx-auto lg:sticky lg:top-2">
       <QRCode
         value={value}
         bgColor={bgColor}
