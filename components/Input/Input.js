@@ -1,8 +1,8 @@
 // Constants
-import { HEX_COLOR_REGEX } from "../../../utils/constants"
+import { HEX_COLOR_REGEX } from "../../utils/constants"
 
 // Store
-import useQrStore from "../../../store/qrStore"
+import useQrStore from "../../store/qrStore"
 
 const Input = ({
   type = "text",
@@ -17,17 +17,50 @@ const Input = ({
 }) => {
   const fgColor = useQrStore(state => state.fgColor)
   const bgColor = useQrStore(state => state.bgColor)
+  const eyeColor = useQrStore(state => state.bgColor)
 
   const fgColorValue = HEX_COLOR_REGEX.test(value) ? value : fgColor
   const bgColorValue = HEX_COLOR_REGEX.test(value) ? value : bgColor
+  const outerLtCornerColorValue = HEX_COLOR_REGEX.test(value)
+    ? value
+    : eyeColor[0].outer
+  const outerRtCornerColorValue = HEX_COLOR_REGEX.test(value)
+    ? value
+    : eyeColor[1].outer
+  const outerLbCornerColorValue = HEX_COLOR_REGEX.test(value)
+    ? value
+    : eyeColor[1].outer
+
+  const innerLtCornerColorValue = HEX_COLOR_REGEX.test(value)
+    ? value
+    : eyeColor[0].inner
+  const innerRtCornerColorValue = HEX_COLOR_REGEX.test(value)
+    ? value
+    : eyeColor[1].inner
+  const innerLbCornerColorValue = HEX_COLOR_REGEX.test(value)
+    ? value
+    : eyeColor[1].inner
 
   const getColorValue = () => {
-    if (withColorForm === "fgColor") {
-      return fgColorValue
-    }
-
-    if (withColorForm === "bgColor") {
-      return bgColorValue
+    switch (withColorForm) {
+      case "fgColor":
+        return fgColorValue
+      case "bgColor":
+        return bgColorValue
+      case "outerLtCornerColor":
+        return outerLtCornerColorValue
+      case "outerRtCornerColor":
+        return outerRtCornerColorValue
+      case "outerLbCornerColor":
+        return outerLbCornerColorValue
+      case "innerLtCornerColor":
+        return innerLtCornerColorValue
+      case "innerRtCornerColor":
+        return innerRtCornerColorValue
+      case "innerLbCornerColor":
+        return innerLbCornerColorValue
+      default:
+        return ""
     }
   }
 

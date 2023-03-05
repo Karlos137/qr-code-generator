@@ -2,7 +2,7 @@
 import { useState } from "react"
 
 // React components
-import Input from "../Input/Input"
+import Input from "../../Input"
 
 // Store
 import useQrStore from "../../../store/qrStore"

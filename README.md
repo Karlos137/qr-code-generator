@@ -8,6 +8,7 @@ Keywords:
 - React
 - Next.js
 - TailwindCSS
+- headlessUI
 - ESLint
 - Prettier
 

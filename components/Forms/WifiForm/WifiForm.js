@@ -2,7 +2,7 @@
 import { useState } from "react"
 
 // React components
-import Input from "../Input"
+import Input from "../../Input"
 import Dropdown from "../Dropdown"
 
 // Store
