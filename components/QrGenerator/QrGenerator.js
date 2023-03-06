@@ -25,8 +25,8 @@ const QrGenerator = () => {
         return "Prostý text"
       case FORMS.wifi:
         return "WiFi"
-      case FORMS.businessCard:
-        return "Vizitka"
+      // case FORMS.businessCard:
+      //   return "Vizitka"
       default:
         return ""
     }
