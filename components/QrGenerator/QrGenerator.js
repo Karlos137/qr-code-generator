@@ -34,7 +34,10 @@ const QrGenerator = () => {
   return (
     <div className="mx-auto grid max-w-[1260px] grid-cols-1 items-start gap-7.5 px-5 lg:grid-cols-[120px_auto_400px]">
       <QrGeneratorMenu />
-      <div className="rounded-[30px] bg-white px-4 py-6 lg:px-10">
+      <div
+        id="qr-kod-nastaveni"
+        className="rounded-[30px] bg-white px-4 py-6 lg:px-10"
+      >
         <h2 className="mb-4 text-[1.3125rem] text-orange-500">
           {getFormTitle()}
         </h2>
