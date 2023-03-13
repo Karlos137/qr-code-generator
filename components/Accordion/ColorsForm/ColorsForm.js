@@ -14,9 +14,13 @@ import { DEFAULT_COLORS } from "./ColorsForm.constants"
 
 const ColorsForm = () => {
   const [colorValues, setColorValues] = useState(DEFAULT_COLORS)
-  const [transparentBackground, setTransparentBackground] = useState(false)
-  const [colorfulCorners, setCorolfulCorner] = useState(false)
 
+  const transparentBackground = useQrStore(state => state.transparentBackground)
+  const setTransparentBackground = useQrStore(
+    state => state.setTransparentBackground
+  )
+  const colorfulCorners = useQrStore(state => state.colorfulCorners)
+  const setCorolfulCorner = useQrStore(state => state.setCorolfulCorner)
   const bgColor = useQrStore(state => state.bgColor)
   const fgColor = useQrStore(state => state.fgColor)
   const eyeColor = useQrStore(state => state.eyeColor)
@@ -40,14 +44,6 @@ const ColorsForm = () => {
       setEyeColor(DEFAULT_COLORS.eyeColor)
     }
   }, [colorfulCorners])
-
-  useEffect(() => {
-    if (transparentBackground) {
-      setBgColor("rgba(255, 255, 255, 0)")
-    } else {
-      setBgColor(colorValues.background)
-    }
-  }, [transparentBackground])
 
   const handleOnChange = e => {
     setColorValues({
@@ -151,6 +147,7 @@ const ColorsForm = () => {
         setEyeColor(DEFAULT_COLORS.eyeColor)
     }
   }
+
   return (
     <div>
       <div className="flex flex-wrap justify-between gap-7.5 min-[1160px]:flex-nowrap">
@@ -177,7 +174,7 @@ const ColorsForm = () => {
             label="Průhledné pozadí"
             enabled={transparentBackground}
             onChange={() => {
-              setTransparentBackground(prev => !prev)
+              setTransparentBackground(!transparentBackground)
             }}
           />
         </div>
@@ -187,7 +184,7 @@ const ColorsForm = () => {
           label="Barevné rohy"
           enabled={colorfulCorners}
           onChange={() => {
-            setCorolfulCorner(prev => !prev)
+            setCorolfulCorner(!colorfulCorners)
           }}
         />
         {colorfulCorners && (

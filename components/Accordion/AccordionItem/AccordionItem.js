@@ -58,7 +58,7 @@ const AccordionItem = ({ title, children, icon, open, onHeaderClick }) => {
           <motion.div
             className="overflow-hidden"
             key={`content-${title}`}
-            initial="collapsed"
+            initial={isOpen ? "open" : "collapsed"}
             animate="open"
             exit="collapsed"
             variants={{

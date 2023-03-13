@@ -10,11 +10,15 @@ import Button from "../Button"
 // Store
 import useQrStore from "../../store/qrStore"
 
+// Constants
+import { TRANSPARENT_BACKGROUND } from "./QrCode.constants"
+
 const QrCode = () => {
   const value = useQrStore(state => state.value)
   const bgColor = useQrStore(state => state.bgColor)
   const fgColor = useQrStore(state => state.fgColor)
   const eyeColor = useQrStore(state => state.eyeColor)
+  const transparentBackground = useQrStore(state => state.transparentBackground)
 
   const qrCodeRef = useRef(null)
 
@@ -58,7 +62,7 @@ const QrCode = () => {
       <QRCode
         ref={qrCodeRef}
         value={value}
-        bgColor={bgColor}
+        bgColor={transparentBackground ? TRANSPARENT_BACKGROUND : bgColor}
         fgColor={fgColor}
         size={334}
         eyeColor={eyeColor}

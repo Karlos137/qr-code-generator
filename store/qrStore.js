@@ -18,6 +18,14 @@ const useQrStore = create(set => ({
   setEyeColor: value => {
     set({ eyeColor: value })
   },
+  transparentBackground: false,
+  setTransparentBackground: value => {
+    set({ transparentBackground: value })
+  },
+  colorfulCorners: false,
+  setCorolfulCorner: value => {
+    set({ colorfulCorners: value })
+  },
 }))
 
 export default useQrStore
