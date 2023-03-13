@@ -12,6 +12,7 @@ import useQrStore from "../../store/qrStore"
 
 // Constants
 import { TRANSPARENT_BACKGROUND } from "./QrCode.constants"
+import { DEFAULT_COLORS } from "../Accordion/ColorsForm/ColorsForm.constants"
 
 const QrCode = () => {
   const value = useQrStore(state => state.value)
@@ -19,6 +20,7 @@ const QrCode = () => {
   const fgColor = useQrStore(state => state.fgColor)
   const eyeColor = useQrStore(state => state.eyeColor)
   const transparentBackground = useQrStore(state => state.transparentBackground)
+  const colorfulCorners = useQrStore(state => state.colorfulCorners)
 
   const qrCodeRef = useRef(null)
 
@@ -65,7 +67,7 @@ const QrCode = () => {
         bgColor={transparentBackground ? TRANSPARENT_BACKGROUND : bgColor}
         fgColor={fgColor}
         size={334}
-        eyeColor={eyeColor}
+        eyeColor={colorfulCorners ? eyeColor : DEFAULT_COLORS}
       />
       <div className="mt-4 flex justify-between gap-2">
         <Button onClick={downloadPNG}>Stáhnout PNG</Button>

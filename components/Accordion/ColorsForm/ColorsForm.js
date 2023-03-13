@@ -36,15 +36,6 @@ const ColorsForm = () => {
     })
   }, [])
 
-  useEffect(() => {
-    if (colorfulCorners) {
-      const newEyeColor = [...colorValues.eyeColor]
-      setEyeColor(newEyeColor)
-    } else {
-      setEyeColor(DEFAULT_COLORS.eyeColor)
-    }
-  }, [colorfulCorners])
-
   const handleOnChange = e => {
     setColorValues({
       ...colorValues,
