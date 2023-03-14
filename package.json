@@ -20,7 +20,7 @@
     "@heroicons/react": "^2.0.16",
     "canvas-to-svg": "^1.0.3",
     "canvg": "^4.0.1",
-    "framer-motion": "^10.2.4",
+    "framer-motion": "^10.3.0",
     "next": "13.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
