@@ -11,8 +11,17 @@ import useQrStore from "../../store/qrStore"
 import { TRANSPARENT_BACKGROUND, BASE_OPTIONS } from "./QrCode.constants"
 // import { DEFAULT_COLORS } from "../Accordion/ColorsForm/ColorsForm.constants"
 
+// easyqrcodejs
 import QRCode from "easyqrcodejs"
+
+// SVG Crowbar
 import downloadSvg, { downloadPng } from "svg-crowbar"
+
+// Heroicons
+import { ArrowDownCircleIcon, PrinterIcon } from "@heroicons/react/24/outline"
+
+// React SVG to image
+import toImg from "react-svg-to-image"
 
 const QrCode = () => {
   const value = useQrStore(state => state.value)
@@ -24,6 +33,8 @@ const QrCode = () => {
   const correctionLevel = useQrStore(state => state.correctionLevel)
 
   const qrCodeRef = useRef(null)
+
+  const buttonIconClassNames = "h-4.5 w-4.5 text-sky-600 group-hover:text-white"
 
   const getCorrectionLevel = () => {
     switch (correctionLevel) {
@@ -80,35 +91,57 @@ const QrCode = () => {
       if (format === "png") {
         downloadPng(qrCodeRef.current.children?.[0], "qrcode")
       }
+
+      if (format === "webp") {
+        toImg("#qr-kod-svg svg", "qrcode", {
+          scale: 2,
+          format: "webp",
+          quality: 1,
+          download: true,
+        })
+      }
     }
   }
 
   return (
     <div id="qr-kod" className="mx-auto lg:sticky lg:top-2">
       <div id="qr-kod-svg" ref={qrCodeRef} />
-      <div className="mt-4 flex justify-between gap-2">
+      <div className="mt-4 flex gap-2">
         <Button
+          icon={true}
           onClick={() => {
             handleDownload("svg")
           }}
         >
-          Stáhnout SVG
+          <span>SVG</span>
+          <ArrowDownCircleIcon className={buttonIconClassNames} />
         </Button>
         <Button
+          icon={true}
           onClick={() => {
             handleDownload("png")
           }}
         >
-          Stáhnout PNG
+          <span>PNG</span>
+          <ArrowDownCircleIcon className={buttonIconClassNames} />
         </Button>
-      </div>
-      <div className="mt-4">
         <Button
+          icon={true}
+          onClick={() => {
+            handleDownload("webp")
+          }}
+        >
+          <span>WEBP</span>
+          <ArrowDownCircleIcon className={buttonIconClassNames} />
+        </Button>
+        <Button
+          icon={true}
           onClick={() => {
             window.print()
           }}
         >
-          Tisknout
+          <span>TISK</span>
+          <PrinterIcon className={buttonIconClassNames} />
         </Button>
       </div>
     </div>

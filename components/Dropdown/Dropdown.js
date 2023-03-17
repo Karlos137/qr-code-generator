@@ -1,11 +1,11 @@
 // React
 import { useState, useRef } from "react"
 
-// Tailwind Merge
-import { twMerge } from "tailwind-merge"
+// Framer Motion
+import { motion, AnimatePresence } from "framer-motion"
 
 // Heroicons
-import { ChevronUpIcon } from "@heroicons/react/24/outline"
+import { ChevronDownIcon } from "@heroicons/react/24/outline"
 
 // Hooks
 import useClickOutside from "../../hooks/useClickOutside"
@@ -33,33 +33,52 @@ const Dropdown = ({ label, options, onOptionClick, defaultValue }) => {
           <div className="rounded-[20px] bg-gray-100 px-4 py-1.5 text-sky-600 hover:shadow">
             {value}
           </div>
-          <ChevronUpIcon
-            className={twMerge(
-              "absolute right-4 top-[9px] h-4.5 w-4.5 text-sky-600",
-              !isOpen ? "rotate-180" : ""
-            )}
-          />
+          <motion.div
+            className="absolute right-4 top-[9px]"
+            animate={
+              isOpen
+                ? {
+                    rotate: 180,
+                  }
+                : { rotate: 0 }
+            }
+          >
+            <ChevronDownIcon className="h-4.5 w-4.5 text-sky-600" />
+          </motion.div>
         </div>
       </div>
-      {isOpen && (
-        <div className="absolute top-[calc(100%+4px)] flex w-full flex-col gap-2.5 rounded-[20px] bg-gray-100 px-4 py-2.5 shadow">
-          {options.map(option => {
-            return (
-              <div
-                className="cursor-pointer text-sky-600 hover:text-orange-500"
-                key={option.id}
-                onClick={() => {
-                  setValue(option.label)
-                  setIsOpen(false)
-                  onOptionClick(option.value)
-                }}
-              >
-                {option.label}
-              </div>
-            )
-          })}
-        </div>
-      )}
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            key={`content-${label}`}
+            initial={isOpen ? "open" : "collapsed"}
+            animate="open"
+            exit="collapsed"
+            variants={{
+              open: { opacity: 1, height: "auto" },
+              collapsed: { opacity: 0, height: 0 },
+            }}
+            transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
+            className="absolute top-[calc(100%+4px)] flex w-full flex-col gap-2.5 rounded-[20px] bg-gray-100 px-4 py-2.5 shadow"
+          >
+            {options.map(option => {
+              return (
+                <div
+                  className="cursor-pointer text-sky-600 hover:text-orange-500"
+                  key={option.id}
+                  onClick={() => {
+                    setValue(option.label)
+                    setIsOpen(false)
+                    onOptionClick(option.value)
+                  }}
+                >
+                  {option.label}
+                </div>
+              )
+            })}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }

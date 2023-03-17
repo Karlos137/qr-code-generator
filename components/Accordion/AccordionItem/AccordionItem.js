@@ -1,18 +1,15 @@
 // React
 import { useState, useEffect } from "react"
 
-// Tailwind Merge
-import { twMerge } from "tailwind-merge"
-
 // Framer Motion
 import { motion, AnimatePresence } from "framer-motion"
 
 // Heroicons
 import {
-  ChevronUpIcon,
+  ChevronDownIcon,
   SparklesIcon,
   QrCodeIcon,
-  AdjustmentsHorizontalIcon,
+  Cog8ToothIcon,
   PhotoIcon,
 } from "@heroicons/react/24/outline"
 
@@ -23,7 +20,7 @@ const AccordionItem = ({ title, children, icon, open, onHeaderClick }) => {
     setIsOpen(open)
   }, [open])
 
-  const iconClassNames = "h-3.5 w-3.5 text-sky-600"
+  const iconClassNames = "h-6 w-6 text-sky-600"
 
   const getIcon = () => {
     switch (icon) {
@@ -32,7 +29,7 @@ const AccordionItem = ({ title, children, icon, open, onHeaderClick }) => {
       case "qrCode":
         return <QrCodeIcon className={iconClassNames} />
       case "settings":
-        return <AdjustmentsHorizontalIcon className={iconClassNames} />
+        return <Cog8ToothIcon className={iconClassNames} />
       case "image":
         return <PhotoIcon className={iconClassNames} />
       default:
@@ -50,12 +47,17 @@ const AccordionItem = ({ title, children, icon, open, onHeaderClick }) => {
         >
           {getIcon()}
           <span className="text-sm font-medium text-sky-600">{title}</span>
-          <ChevronUpIcon
-            className={twMerge(
-              "h-3.5 w-3.5 rotate-180 text-sky-600",
-              isOpen ? "rotate-0" : ""
-            )}
-          />
+          <motion.div
+            animate={
+              isOpen
+                ? {
+                    rotate: 180,
+                  }
+                : { rotate: 0 }
+            }
+          >
+            <ChevronDownIcon className="h-3.5 w-3.5 rotate-180 text-sky-600" />
+          </motion.div>
         </div>
         <div className="mt-2.5 h-[1px] w-full bg-gray-100"></div>
       </div>
