@@ -1,8 +1,5 @@
 // React
-import { useRef } from "react"
-
-// React QRcode Logo
-import { QRCode } from "react-qrcode-logo"
+import { useRef, useEffect } from "react"
 
 // React components
 import Button from "../Button"
@@ -14,6 +11,9 @@ import useQrStore from "../../store/qrStore"
 import { TRANSPARENT_BACKGROUND } from "./QrCode.constants"
 import { DEFAULT_COLORS } from "../Accordion/ColorsForm/ColorsForm.constants"
 
+import QR from "easyqrcodejs"
+import downloadSvg, { downloadPng } from "svg-crowbar"
+
 const QrCode = () => {
   const value = useQrStore(state => state.value)
   const bgColor = useQrStore(state => state.bgColor)
@@ -21,57 +21,66 @@ const QrCode = () => {
   const eyeColor = useQrStore(state => state.eyeColor)
   const transparentBackground = useQrStore(state => state.transparentBackground)
   const colorfulCorners = useQrStore(state => state.colorfulCorners)
-
   const qrCodeRef = useRef(null)
 
-  const downloadPNG = () => {
-    qrCodeRef.current.canvas.current.toBlob(blob => {
-      const link = document.createElement("a")
-      link.download = "qrcode.png"
-      link.href = URL.createObjectURL(blob)
-      link.click()
-    }, "image/png")
-  }
+  useEffect(() => {
+    const options = {
+      quietZone: 20,
+      text: value ? value : " ",
+      width: 340,
+      height: 340,
+      colorDark: fgColor,
+      colorLight: transparentBackground ? TRANSPARENT_BACKGROUND : bgColor,
+      drawer: "svg",
+    }
 
-  function downloadSVG() {
-    const canvas = qrCodeRef.current.canvas.current
-    const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg")
-    svg.setAttribute("width", canvas.width)
-    svg.setAttribute("height", canvas.height)
-    const svgNS = svg.namespaceURI
-    const img = document.createElementNS(svgNS, "image")
-    img.setAttributeNS(
-      "http://www.w3.org/1999/xlink",
-      "href",
-      canvas.toDataURL()
-    )
-    img.setAttribute("width", canvas.width)
-    img.setAttribute("height", canvas.height)
-    svg.appendChild(img)
+    if (colorfulCorners) {
+      options.PO_TL = eyeColor[0].outer
+      options.PI_TL = eyeColor[0].inner
+    }
 
-    const serializer = new XMLSerializer()
-    const svgString = serializer.serializeToString(svg)
+    const qr = new QR(qrCodeRef.current, options)
+  }, [
+    value,
+    fgColor,
+    bgColor,
+    eyeColor,
+    colorfulCorners,
+    transparentBackground,
+  ])
 
-    const downloadLink = document.createElement("a")
-    downloadLink.href =
-      "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgString)
-    downloadLink.download = "qrcode.svg"
-    downloadLink.click()
+  const handleDownload = format => {
+    if (qrCodeRef.current !== null && qrCodeRef.current?.children?.length > 0) {
+      if (format === "svg") {
+        downloadSvg(qrCodeRef.current.children?.[0], "qrcode", {
+          css: "none",
+        })
+      }
+
+      if (format === "png") {
+        downloadPng(qrCodeRef.current.children?.[0], "qrcode")
+      }
+    }
   }
 
   return (
     <div id="qr-kod" className="mx-auto lg:sticky lg:top-2">
-      <QRCode
-        ref={qrCodeRef}
-        value={value}
-        bgColor={transparentBackground ? TRANSPARENT_BACKGROUND : bgColor}
-        fgColor={fgColor}
-        size={334}
-        eyeColor={colorfulCorners ? eyeColor : DEFAULT_COLORS}
-      />
+      <div id="qr-kod-svg" ref={qrCodeRef} />
       <div className="mt-4 flex justify-between gap-2">
-        <Button onClick={downloadPNG}>Stáhnout PNG</Button>
-        <Button onClick={downloadSVG}>Stáhnout SVG</Button>
+        <Button
+          onClick={() => {
+            handleDownload("svg")
+          }}
+        >
+          Stáhnout SVG
+        </Button>
+        <Button
+          onClick={() => {
+            handleDownload("png")
+          }}
+        >
+          Stáhnout PNG
+        </Button>
       </div>
       <div className="mt-4">
         <Button

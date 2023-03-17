@@ -127,11 +127,12 @@
     visibility: hidden;
   }
 
-  #react-qrcode-logo,
-  #react-qrcode-logo * {
+  #qr-kod-svg,
+  #qr-kod-svg * {
     visibility: visible;
     margin: auto;
   }
+
   #qr-kod {
     position: absolute;
     left: 0;

@@ -2,7 +2,7 @@ import { create } from "zustand"
 import { DEFAULT_COLORS } from "../components/Accordion/ColorsForm/ColorsForm.constants"
 
 const useQrStore = create(set => ({
-  value: "",
+  value: " ",
   setValue: value => {
     set({ value: value })
   },
