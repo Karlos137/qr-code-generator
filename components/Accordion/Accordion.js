@@ -4,6 +4,7 @@ import { useState } from "react"
 // React components
 import AccordionItem from "./AccordionItem"
 import ColorsForm from "./ColorsForm"
+import LogoForm from "./LogoForm"
 import SettingsForm from "./SettingsForm"
 
 // Constants
@@ -59,7 +60,7 @@ const Accordion = () => {
       </AccordionItem>
       <AccordionItem
         title="Logo"
-        icon="qrCode"
+        icon="image"
         open={accordionItemsOpen.logo}
         onHeaderClick={() => {
           if (accordionItemsOpen.logo === true) {
@@ -74,11 +75,11 @@ const Accordion = () => {
           }
         }}
       >
-        TODO LOGO
+        <LogoForm />
       </AccordionItem>
       <AccordionItem
         title="Nastavení"
-        icon="qrCode"
+        icon="settings"
         open={accordionItemsOpen.settings}
         onHeaderClick={() => {
           if (accordionItemsOpen.settings === true) {

@@ -30,19 +30,19 @@ const Dropdown = ({ label, options, onOptionClick, defaultValue }) => {
             setIsOpen(prev => !prev)
           }}
         >
-          <div className="rounded-[20px] bg-gray-100 px-4 py-1.5 text-sky-600">
+          <div className="rounded-[20px] bg-gray-100 px-4 py-1.5 text-sky-600 hover:shadow">
             {value}
           </div>
           <ChevronUpIcon
             className={twMerge(
-              "absolute right-4 top-[9px] h-4.5 w-4.5",
+              "absolute right-4 top-[9px] h-4.5 w-4.5 text-sky-600",
               !isOpen ? "rotate-180" : ""
             )}
           />
         </div>
       </div>
       {isOpen && (
-        <div className="absolute top-[calc(100%+4px)] flex w-full flex-col gap-2.5 rounded-[20px] bg-gray-100 px-4 py-2.5">
+        <div className="absolute top-[calc(100%+4px)] flex w-full flex-col gap-2.5 rounded-[20px] bg-gray-100 px-4 py-2.5 shadow">
           {options.map(option => {
             return (
               <div

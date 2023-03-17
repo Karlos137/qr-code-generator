@@ -12,6 +12,8 @@ import {
   ChevronUpIcon,
   SparklesIcon,
   QrCodeIcon,
+  AdjustmentsHorizontalIcon,
+  PhotoIcon,
 } from "@heroicons/react/24/outline"
 
 const AccordionItem = ({ title, children, icon, open, onHeaderClick }) => {
@@ -29,6 +31,10 @@ const AccordionItem = ({ title, children, icon, open, onHeaderClick }) => {
         return <SparklesIcon className={iconClassNames} />
       case "qrCode":
         return <QrCodeIcon className={iconClassNames} />
+      case "settings":
+        return <AdjustmentsHorizontalIcon className={iconClassNames} />
+      case "image":
+        return <PhotoIcon className={iconClassNames} />
       default:
         return <QrCodeIcon className={iconClassNames} />
     }
