@@ -9,9 +9,9 @@ import useQrStore from "../../store/qrStore"
 
 // Constants
 import { TRANSPARENT_BACKGROUND } from "./QrCode.constants"
-import { DEFAULT_COLORS } from "../Accordion/ColorsForm/ColorsForm.constants"
+// import { DEFAULT_COLORS } from "../Accordion/ColorsForm/ColorsForm.constants"
 
-import QR from "easyqrcodejs"
+import QRCode from "easyqrcodejs"
 import downloadSvg, { downloadPng } from "svg-crowbar"
 
 const QrCode = () => {
@@ -32,6 +32,7 @@ const QrCode = () => {
       colorDark: fgColor,
       colorLight: transparentBackground ? TRANSPARENT_BACKGROUND : bgColor,
       drawer: "svg",
+      correctLevel: QRCode.CorrectLevel.L,
     }
 
     if (colorfulCorners) {
@@ -39,7 +40,7 @@ const QrCode = () => {
       options.PI_TL = eyeColor[0].inner
     }
 
-    const qr = new QR(qrCodeRef.current, options)
+    const qr = new QRCode(qrCodeRef.current, options)
   }, [
     value,
     fgColor,

@@ -4,6 +4,8 @@ import { HEX_COLOR_REGEX } from "../../utils/constants"
 // Store
 import useQrStore from "../../store/qrStore"
 
+const MAX_LENGTH = 200
+
 const Input = ({
   type = "text",
   name,
@@ -80,6 +82,7 @@ const Input = ({
             value={value}
             onChange={onChange}
             name={name}
+            maxLength={MAX_LENGTH}
             {...rest}
           />
           <input
@@ -99,6 +102,7 @@ const Input = ({
           value={value}
           onChange={onChange}
           name={name}
+          maxLength={MAX_LENGTH}
           {...rest}
         />
       )}

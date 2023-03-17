@@ -1,3 +1,5 @@
+const MAX_LENGTH = 1010
+
 const TextArea = ({ type = "text", placeholder, id, label, ...rest }) => {
   return (
     <div className="flex flex-col gap-1">
@@ -10,6 +12,7 @@ const TextArea = ({ type = "text", placeholder, id, label, ...rest }) => {
         rows={4}
         type={type}
         placeholder={placeholder}
+        maxLength={MAX_LENGTH}
         {...rest}
       />
     </div>
