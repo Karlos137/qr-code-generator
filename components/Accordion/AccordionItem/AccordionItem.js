@@ -56,7 +56,6 @@ const AccordionItem = ({ title, children, icon, open, onHeaderClick }) => {
       <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
-            className="overflow-hidden"
             key={`content-${title}`}
             initial={isOpen ? "open" : "collapsed"}
             animate="open"

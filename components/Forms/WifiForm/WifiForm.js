@@ -3,7 +3,7 @@ import { useState } from "react"
 
 // React components
 import Input from "../../Input"
-import Dropdown from "../Dropdown"
+import Dropdown from "../../Dropdown"
 
 // Store
 import useQrStore from "../../../store/qrStore"
@@ -70,6 +70,7 @@ const WifiForm = () => {
           label="Zabezpečení"
           options={SECURITY_OPTIONS}
           onOptionClick={handleOptionChange}
+          defaultValue="Zabezpečení"
         />
       </div>
     </form>

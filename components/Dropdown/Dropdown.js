@@ -8,11 +8,11 @@ import { twMerge } from "tailwind-merge"
 import { ChevronUpIcon } from "@heroicons/react/24/outline"
 
 // Hooks
-import useClickOutside from "../../../hooks/useClickOutside"
+import useClickOutside from "../../hooks/useClickOutside"
 
-const Dropdown = ({ label, options, onOptionClick }) => {
+const Dropdown = ({ label, options, onOptionClick, defaultValue }) => {
   const [isOpen, setIsOpen] = useState(false)
-  const [value, setValue] = useState("Zabezpečení")
+  const [value, setValue] = useState(defaultValue)
   const ref = useRef(null)
 
   useClickOutside(ref, () => {

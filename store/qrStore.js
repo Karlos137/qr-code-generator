@@ -1,5 +1,6 @@
 import { create } from "zustand"
 import { DEFAULT_COLORS } from "../components/Accordion/ColorsForm/ColorsForm.constants"
+import { DEFAULT_SETTINGS } from "../components/Accordion/SettingsForm/SettingsForm.constants"
 
 const useQrStore = create(set => ({
   value: " ",
@@ -25,6 +26,10 @@ const useQrStore = create(set => ({
   colorfulCorners: false,
   setCorolfulCorner: value => {
     set({ colorfulCorners: value })
+  },
+  correctionLevel: DEFAULT_SETTINGS.correctionLevel.value,
+  setCorrectionLevel: value => {
+    set({ correctionLevel: value })
   },
 }))
 

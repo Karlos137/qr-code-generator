@@ -8,7 +8,7 @@ import Button from "../Button"
 import useQrStore from "../../store/qrStore"
 
 // Constants
-import { TRANSPARENT_BACKGROUND } from "./QrCode.constants"
+import { TRANSPARENT_BACKGROUND, BASE_OPTIONS } from "./QrCode.constants"
 // import { DEFAULT_COLORS } from "../Accordion/ColorsForm/ColorsForm.constants"
 
 import QRCode from "easyqrcodejs"
@@ -21,23 +21,41 @@ const QrCode = () => {
   const eyeColor = useQrStore(state => state.eyeColor)
   const transparentBackground = useQrStore(state => state.transparentBackground)
   const colorfulCorners = useQrStore(state => state.colorfulCorners)
+  const correctionLevel = useQrStore(state => state.correctionLevel)
+
   const qrCodeRef = useRef(null)
+
+  const getCorrectionLevel = () => {
+    switch (correctionLevel) {
+      case "L":
+        return QRCode.CorrectLevel.L
+      case "M":
+        return QRCode.CorrectLevel.M
+      case "Q":
+        return QRCode.CorrectLevel.Q
+      case "H":
+        return QRCode.CorrectLevel.H
+      default:
+        return QRCode.CorrectLevel.L
+    }
+  }
 
   useEffect(() => {
     const options = {
-      quietZone: 20,
+      ...BASE_OPTIONS,
       text: value ? value : " ",
-      width: 340,
-      height: 340,
       colorDark: fgColor,
       colorLight: transparentBackground ? TRANSPARENT_BACKGROUND : bgColor,
-      drawer: "svg",
-      correctLevel: QRCode.CorrectLevel.L,
+      correctLevel: getCorrectionLevel(),
     }
 
     if (colorfulCorners) {
       options.PO_TL = eyeColor[0].outer
       options.PI_TL = eyeColor[0].inner
+      options.PO_TR = eyeColor[1].outer
+      options.PI_TR = eyeColor[1].inner
+      options.PO_BL = eyeColor[2].outer
+      options.PI_BL = eyeColor[2].inner
     }
 
     const qr = new QRCode(qrCodeRef.current, options)
@@ -48,6 +66,7 @@ const QrCode = () => {
     eyeColor,
     colorfulCorners,
     transparentBackground,
+    correctionLevel,
   ])
 
   const handleDownload = format => {
