@@ -1,6 +1,3 @@
-// React
-import { useState } from "react"
-
 // React components
 import Dropdown from "../../Dropdown"
 
@@ -8,36 +5,43 @@ import Dropdown from "../../Dropdown"
 import {
   DEFAULT_SETTINGS,
   CORRECTION_LEVEL_OPTIONS,
+  SIZE_OPTIONS,
 } from "./SettingsForm.constants"
 
 // Store
 import useQrStore from "../../../store/qrStore"
 
 const SettingsForm = () => {
-  const [settingsValues, setSettingsValues] = useState({
-    correctionLevel: DEFAULT_SETTINGS.correctionLevel.value,
-  })
   const setCorrectionLevel = useQrStore(state => state.setCorrectionLevel)
+  const setDownloadSize = useQrStore(state => state.setDownloadSize)
 
-  const handleOptionChange = optionValue => {
-    setSettingsValues({
-      ...settingsValues,
-      correctionLevel: optionValue,
-    })
-
+  const handleCorrectionOptionChange = optionValue => {
     setCorrectionLevel(optionValue)
+  }
+
+  const handleSizeOptionChange = optionValue => {
+    setDownloadSize(optionValue)
   }
 
   return (
     <div>
-      <div className="flex flex-wrap justify-between gap-7.5 min-[1160px]:flex-nowrap">
+      <div className="flex flex-wrap justify-start gap-6 min-[1160px]:flex-nowrap">
         <Dropdown
           label="Úroveň korekce"
           options={CORRECTION_LEVEL_OPTIONS}
-          onOptionClick={handleOptionChange}
+          onOptionClick={handleCorrectionOptionChange}
           defaultValue={DEFAULT_SETTINGS.correctionLevel.label}
         />
+        <Dropdown
+          label="Velikost*"
+          options={SIZE_OPTIONS}
+          onOptionClick={handleSizeOptionChange}
+          defaultValue={DEFAULT_SETTINGS.size.label}
+        />
       </div>
+      <p className="mt-4 text-xs italic text-gray-500">
+        *platí pro stáhnutý QR kód ve formátech PNG a WEBP
+      </p>
     </div>
   )
 }

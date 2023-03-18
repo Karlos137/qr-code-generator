@@ -1,5 +1,5 @@
 // React
-import { useRef, useEffect } from "react"
+import { useRef, useEffect, useState } from "react"
 
 // React components
 import Button from "../Button"
@@ -8,8 +8,11 @@ import Button from "../Button"
 import useQrStore from "../../store/qrStore"
 
 // Constants
-import { TRANSPARENT_BACKGROUND, BASE_OPTIONS } from "./QrCode.constants"
-// import { DEFAULT_COLORS } from "../Accordion/ColorsForm/ColorsForm.constants"
+import {
+  TRANSPARENT_BACKGROUND,
+  BASE_OPTIONS,
+  MOBILE_SIZES,
+} from "./QrCode.constants"
 
 // easyqrcodejs
 import QRCode from "easyqrcodejs"
@@ -29,6 +32,9 @@ import useMediaQuery from "../../hooks/useMediaQuery"
 const QrCode = () => {
   const isMobile = useMediaQuery("(max-width: 420px)")
   const isSmallMobile = useMediaQuery("(max-width: 365px)")
+  const [currentQrCodeSize, setCurrentQrCodeSize] = useState(
+    BASE_OPTIONS.width + BASE_OPTIONS.quietZone + 16
+  )
   const value = useQrStore(state => state.value)
   const bgColor = useQrStore(state => state.bgColor)
   const fgColor = useQrStore(state => state.fgColor)
@@ -41,6 +47,7 @@ const QrCode = () => {
   const logoBackgroundTransparent = useQrStore(
     state => state.logoBackgroundTransparent
   )
+  const downloadSize = useQrStore(state => state.downloadSize)
 
   const qrCodeRef = useRef(null)
 
@@ -62,10 +69,32 @@ const QrCode = () => {
   }
 
   useEffect(() => {
+    if (isMobile) {
+      if (isSmallMobile) {
+        setCurrentQrCodeSize(
+          MOBILE_SIZES.smallMobile + BASE_OPTIONS.quietZone + 11
+        )
+      } else {
+        setCurrentQrCodeSize(MOBILE_SIZES.mobile + BASE_OPTIONS.quietZone + 18)
+      }
+    } else {
+      setCurrentQrCodeSize(BASE_OPTIONS.width + BASE_OPTIONS.quietZone + 16)
+    }
+  }, [isSmallMobile, isMobile])
+
+  useEffect(() => {
     const options = {
       ...BASE_OPTIONS,
-      width: isSmallMobile ? 240 : isMobile ? 275 : BASE_OPTIONS.width,
-      height: isSmallMobile ? 240 : isMobile ? 275 : BASE_OPTIONS.height,
+      width: isSmallMobile
+        ? MOBILE_SIZES.smallMobile
+        : isMobile
+        ? MOBILE_SIZES.mobile
+        : BASE_OPTIONS.width,
+      height: isSmallMobile
+        ? MOBILE_SIZES.smallMobile
+        : isMobile
+        ? MOBILE_SIZES.mobile
+        : BASE_OPTIONS.height,
       text: value ? value : " ",
       colorDark: fgColor,
       colorLight: transparentBackground ? TRANSPARENT_BACKGROUND : bgColor,
@@ -113,12 +142,14 @@ const QrCode = () => {
       }
 
       if (format === "png") {
-        downloadPng(qrCodeRef.current.children?.[0], "qrcode")
+        downloadPng(qrCodeRef.current.children?.[0], "qrcode", {
+          downloadPNGOptions: { scale: downloadSize / currentQrCodeSize / 2 },
+        })
       }
 
       if (format === "webp") {
         toImg("#qr-kod-svg svg", "qrcode", {
-          scale: 2,
+          scale: downloadSize / currentQrCodeSize,
           format: "webp",
           quality: 1,
           download: true,

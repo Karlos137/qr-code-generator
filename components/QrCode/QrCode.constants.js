@@ -6,3 +6,8 @@ export const BASE_OPTIONS = {
   height: 340,
   drawer: "svg",
 }
+
+export const MOBILE_SIZES = {
+  smallMobile: 240,
+  mobile: 275,
+}

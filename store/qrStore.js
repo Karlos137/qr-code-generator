@@ -48,6 +48,10 @@ const useQrStore = create(set => ({
   setLogoBackgroundTransparent: value => {
     set({ logoBackgroundTransparent: value })
   },
+  downloadSize: DEFAULT_SETTINGS.size.value,
+  setDownloadSize: value => {
+    set({ downloadSize: value })
+  },
 }))
 
 export default useQrStore
