@@ -50,7 +50,12 @@ export const SIZE_OPTIONS = [
   },
   {
     id: "4",
-    label: "500px",
-    value: "500",
+    label: "600px",
+    value: "600",
+  },
+  {
+    id: "5",
+    label: "800px",
+    value: "600",
   },
 ]

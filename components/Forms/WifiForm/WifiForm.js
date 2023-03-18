@@ -53,7 +53,7 @@ const WifiForm = () => {
         id="wifi-name"
         label="Název sítě"
         name="name"
-        placeholder="Název sítě"
+        placeholder="SSID"
         value={wifiValues.name}
         onChange={handleOnChange}
       />
@@ -62,7 +62,7 @@ const WifiForm = () => {
           id="wifi-password"
           label="Heslo"
           name="password"
-          placeholder="Heslo"
+          placeholder="Heslo sítě"
           value={wifiValues.password}
           onChange={handleOnChange}
         />

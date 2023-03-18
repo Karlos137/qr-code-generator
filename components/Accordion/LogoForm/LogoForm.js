@@ -24,9 +24,13 @@ const LogoForm = () => {
   const handleFileChange = event => {
     if (event.target.files.length > 0) {
       const file = event.target.files[0]
-      const logoUrl = URL.createObjectURL(file)
-      setLogoUrl(logoUrl)
-      setLogoFileName(file.name)
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onloadend = () => {
+        const dataUrl = reader.result
+        setLogoUrl(dataUrl)
+        setLogoFileName(file.name)
+      }
     }
   }
 

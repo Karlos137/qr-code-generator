@@ -37,7 +37,7 @@ const EmailForm = () => {
         id="email-recipient"
         label="Příjemce"
         name="recipient"
-        placeholder="Příjemce"
+        placeholder="E-mailová adresa"
         value={emailValues.name}
         onChange={handleOnChange}
       />
@@ -45,7 +45,7 @@ const EmailForm = () => {
         id="email-subject"
         label="Předmět"
         name="subject"
-        placeholder="Předmět"
+        placeholder="Předmět zprávy"
         value={emailValues.subject}
         onChange={handleOnChange}
       />
