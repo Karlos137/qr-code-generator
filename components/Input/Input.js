@@ -13,6 +13,9 @@ import Button from "../Button"
 // Heroicons
 import { ArrowUpTrayIcon } from "@heroicons/react/24/outline"
 
+// Tailwind Merge
+import { twMerge } from "tailwind-merge"
+
 const MAX_LENGTH = 200
 
 const Input = ({
@@ -25,6 +28,7 @@ const Input = ({
   value,
   onChange,
   fileName,
+  disabled,
   ...rest
 }) => {
   const fgColor = useQrStore(state => state.fgColor)
@@ -87,20 +91,36 @@ const Input = ({
       return (
         <div className="mt-4 flex grow-0 flex-wrap items-center gap-2">
           <Button onClick={handleClick} icon={true}>
-            <span>Vyberte logo</span>
+            <span>Vybrat</span>
             <ArrowUpTrayIcon className="h-4.5 w-4.5 text-sky-600 group-hover:text-white" />
           </Button>
           <input
+            className="hidden"
             id={id}
             type={type}
             ref={hiddenFileInput}
             onChange={onChange}
-            className="hidden"
             name={name}
             {...rest}
           />
           <p className="pl-2 text-sm">{fileName}</p>
         </div>
+      )
+    } else if (type === "range") {
+      return (
+        <>
+          <input
+            className="h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-200 accent-sky-600 disabled:cursor-not-allowed disabled:bg-gray-100 disabled:accent-gray-400"
+            id={id}
+            type={type}
+            value={value}
+            disabled={disabled}
+            onChange={onChange}
+            name={name}
+            {...rest}
+          />
+          <div className="mt-1">{`${value}%`}</div>
+        </>
       )
     } else {
       if (withColorForm) {

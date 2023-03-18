@@ -56,7 +56,7 @@ const AccordionItem = ({ title, children, icon, open, onHeaderClick }) => {
                 : { rotate: 0 }
             }
           >
-            <ChevronDownIcon className="h-3.5 w-3.5 rotate-180 text-sky-600" />
+            <ChevronDownIcon className="h-3.5 w-3.5 text-sky-600" />
           </motion.div>
         </div>
         <div className="mt-2.5 h-[1px] w-full bg-gray-100"></div>
@@ -69,8 +69,8 @@ const AccordionItem = ({ title, children, icon, open, onHeaderClick }) => {
             animate="open"
             exit="collapsed"
             variants={{
-              open: { opacity: 1, height: "auto" },
-              collapsed: { opacity: 0, height: 0 },
+              open: { opacity: 1, height: "auto", overflow: "initial" },
+              collapsed: { opacity: 0, height: 0, overflow: "hidden" },
             }}
             transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
           >

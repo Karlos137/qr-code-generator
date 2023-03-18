@@ -23,7 +23,12 @@ import { ArrowDownCircleIcon, PrinterIcon } from "@heroicons/react/24/outline"
 // React SVG to image
 import toImg from "react-svg-to-image"
 
+// Hooks
+import useMediaQuery from "../../hooks/useMediaQuery"
+
 const QrCode = () => {
+  const isMobile = useMediaQuery("(max-width: 420px)")
+  const isSmallMobile = useMediaQuery("(max-width: 365px)")
   const value = useQrStore(state => state.value)
   const bgColor = useQrStore(state => state.bgColor)
   const fgColor = useQrStore(state => state.fgColor)
@@ -32,6 +37,10 @@ const QrCode = () => {
   const colorfulCorners = useQrStore(state => state.colorfulCorners)
   const correctionLevel = useQrStore(state => state.correctionLevel)
   const logoUrl = useQrStore(state => state.logoUrl)
+  const logoSize = useQrStore(state => state.logoSize)
+  const logoBackgroundTransparent = useQrStore(
+    state => state.logoBackgroundTransparent
+  )
 
   const qrCodeRef = useRef(null)
 
@@ -55,10 +64,15 @@ const QrCode = () => {
   useEffect(() => {
     const options = {
       ...BASE_OPTIONS,
+      width: isSmallMobile ? 240 : isMobile ? 275 : BASE_OPTIONS.width,
+      height: isSmallMobile ? 240 : isMobile ? 275 : BASE_OPTIONS.height,
       text: value ? value : " ",
       colorDark: fgColor,
       colorLight: transparentBackground ? TRANSPARENT_BACKGROUND : bgColor,
       correctLevel: getCorrectionLevel(),
+      logoWidth: (BASE_OPTIONS.width / 3.5 / 100) * logoSize,
+      logoHeight: (BASE_OPTIONS.width / 3.5 / 100) * logoSize,
+      logoBackgroundTransparent: logoBackgroundTransparent,
     }
 
     if (colorfulCorners) {
@@ -84,6 +98,10 @@ const QrCode = () => {
     transparentBackground,
     correctionLevel,
     logoUrl,
+    logoSize,
+    logoBackgroundTransparent,
+    isSmallMobile,
+    isMobile,
   ])
 
   const handleDownload = format => {

@@ -1,6 +1,11 @@
 import { create } from "zustand"
-import { DEFAULT_COLORS } from "../components/Accordion/ColorsForm/ColorsForm.constants"
+
+import {
+  DEFAULT_COLORS,
+  DEFAULT_COLORS_SETTINGS,
+} from "../components/Accordion/ColorsForm/ColorsForm.constants"
 import { DEFAULT_SETTINGS } from "../components/Accordion/SettingsForm/SettingsForm.constants"
+import { DEFAULT_LOGO_SETTINGS } from "../components/Accordion/LogoForm/LogoForm.constants"
 
 const useQrStore = create(set => ({
   value: " ",
@@ -19,11 +24,11 @@ const useQrStore = create(set => ({
   setEyeColor: value => {
     set({ eyeColor: value })
   },
-  transparentBackground: false,
+  transparentBackground: DEFAULT_COLORS_SETTINGS.transparentBackground,
   setTransparentBackground: value => {
     set({ transparentBackground: value })
   },
-  colorfulCorners: false,
+  colorfulCorners: DEFAULT_COLORS_SETTINGS.colorfulCorners,
   setCorolfulCorner: value => {
     set({ colorfulCorners: value })
   },
@@ -31,9 +36,17 @@ const useQrStore = create(set => ({
   setCorrectionLevel: value => {
     set({ correctionLevel: value })
   },
-  logoUrl: "",
+  logoUrl: DEFAULT_LOGO_SETTINGS.logoUrl,
   setLogoUrl: value => {
     set({ logoUrl: value })
+  },
+  logoSize: DEFAULT_LOGO_SETTINGS.logoSize,
+  setLogoSize: value => {
+    set({ logoSize: value })
+  },
+  logoBackgroundTransparent: DEFAULT_LOGO_SETTINGS.logoBackgroundTransparent,
+  setLogoBackgroundTransparent: value => {
+    set({ logoBackgroundTransparent: value })
   },
 }))
 

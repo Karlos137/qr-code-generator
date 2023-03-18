@@ -39,7 +39,7 @@ const Accordion = () => {
       >
         <ColorsForm />
       </AccordionItem>
-      <AccordionItem
+      {/* <AccordionItem
         title="Vzhled"
         icon="qrCode"
         open={accordionItemsOpen.appearance}
@@ -57,7 +57,7 @@ const Accordion = () => {
         }}
       >
         TODO VZHLED
-      </AccordionItem>
+      </AccordionItem> */}
       <AccordionItem
         title="Logo"
         icon="image"

@@ -55,8 +55,8 @@ const Dropdown = ({ label, options, onOptionClick, defaultValue }) => {
             animate="open"
             exit="collapsed"
             variants={{
-              open: { opacity: 1, height: "auto" },
-              collapsed: { opacity: 0, height: 0 },
+              open: { opacity: 1, height: "auto", overflow: "initial" },
+              collapsed: { opacity: 0, height: 0, overflow: "hidden" },
             }}
             transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
             className="absolute top-[calc(100%+4px)] flex w-full flex-col gap-2.5 rounded-[20px] bg-gray-100 px-4 py-2.5 shadow"

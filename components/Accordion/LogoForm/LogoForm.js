@@ -3,6 +3,7 @@ import { useState } from "react"
 
 // React components
 import Input from "../../Input"
+import Toggle from "../../Toggle"
 
 // Store
 import useQrStore from "../../../store/qrStore"
@@ -10,6 +11,14 @@ import useQrStore from "../../../store/qrStore"
 const LogoForm = () => {
   const logoUrl = useQrStore(state => state.logoUrl)
   const setLogoUrl = useQrStore(state => state.setLogoUrl)
+  const logoSize = useQrStore(state => state.logoSize)
+  const setLogoSize = useQrStore(state => state.setLogoSize)
+  const logoBackgroundTransparent = useQrStore(
+    state => state.logoBackgroundTransparent
+  )
+  const setLogoBackgroundTransparent = useQrStore(
+    state => state.setLogoBackgroundTransparent
+  )
   const [logoFileName, setLogoFileName] = useState("")
 
   const handleFileChange = event => {
@@ -22,28 +31,52 @@ const LogoForm = () => {
   }
 
   return (
-    <div className="grid grid-cols-[1fr_1fr] gap-7.5 md:grid-cols-[2fr_1fr]">
-      <div>
-        <Input
-          id="logo-input"
-          label="Nahrát logo"
-          name="logoInput"
-          type="file"
-          accept="image/*"
-          onChange={handleFileChange}
-          fileName={logoFileName}
-        />
-      </div>
-      {logoUrl && (
-        <div className="px-2">
-          <img
-            className="block max-w-[100%]"
-            src={logoUrl}
-            alt="Logo - QR kód"
+    <>
+      <div className="grid grid-cols-[2fr_1fr] gap-7.5 md:grid-cols-[4fr_1fr]">
+        <div>
+          <Input
+            id="logo-input"
+            label="Nahrát logo"
+            name="logoInput"
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            fileName={logoFileName}
           />
         </div>
-      )}
-    </div>
+        {logoUrl && (
+          <div className="flex flex-col px-2">
+            <img
+              className="mt-auto block max-w-[100%]"
+              src={logoUrl}
+              alt="Logo - QR kód"
+            />
+          </div>
+        )}
+      </div>
+      <div className="mt-4">
+        <Input
+          type="range"
+          id="logo-size"
+          label="Velikost loga"
+          disabled={!logoUrl}
+          value={logoSize}
+          min={40}
+          max={100}
+          onChange={e => {
+            setLogoSize(e.target.value)
+          }}
+        />
+        <Toggle
+          label="Odebrat pozadí za logem"
+          enabled={logoBackgroundTransparent}
+          disabled={!logoUrl}
+          onChange={() => {
+            setLogoBackgroundTransparent(!logoBackgroundTransparent)
+          }}
+        />
+      </div>
+    </>
   )
 }
 export default LogoForm

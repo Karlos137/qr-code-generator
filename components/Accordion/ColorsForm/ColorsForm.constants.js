@@ -7,3 +7,8 @@ export const DEFAULT_COLORS = {
     { outer: "#000000", inner: "#000000" },
   ],
 }
+
+export const DEFAULT_COLORS_SETTINGS = {
+  transparentBackground: false,
+  colorfulCorners: false,
+}

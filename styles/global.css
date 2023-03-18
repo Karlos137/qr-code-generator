@@ -116,35 +116,40 @@
     @apply text-gray-800;
   }
 
+  #qr-kod-svg svg {
+    margin: auto;
+  }
+
   ::selection {
     @apply text-white;
     @apply bg-sky-600;
   }
+
+  @media print {
+    body * {
+      visibility: hidden;
+    }
+
+    #qr-kod-svg,
+    #qr-kod-svg * {
+      visibility: visible;
+      margin: auto;
+    }
+
+    #qr-kod {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+    }
+
+    #jak-na-to,
+    #co-je-to-qr-kod,
+    #qr-kod-nastaveni,
+    #qr-kod-menu {
+      display: none;
+    }
+  }
 }
 
-@media print {
-  body * {
-    visibility: hidden;
-  }
-
-  #qr-kod-svg,
-  #qr-kod-svg * {
-    visibility: visible;
-    margin: auto;
-  }
-
-  #qr-kod {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-  }
-
-  #jak-na-to,
-  #co-je-to-qr-kod,
-  #qr-kod-nastaveni,
-  #qr-kod-menu {
-    display: none;
-  }
-}
 /* CUSTOM END */
