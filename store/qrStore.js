@@ -31,6 +31,10 @@ const useQrStore = create(set => ({
   setCorrectionLevel: value => {
     set({ correctionLevel: value })
   },
+  logoUrl: "",
+  setLogoUrl: value => {
+    set({ logoUrl: value })
+  },
 }))
 
 export default useQrStore

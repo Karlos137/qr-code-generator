@@ -1,8 +1,17 @@
+// React
+import { useRef } from "react"
+
 // Constants
 import { HEX_COLOR_REGEX } from "../../utils/constants"
 
 // Store
 import useQrStore from "../../store/qrStore"
+
+// React components
+import Button from "../Button"
+
+// Heroicons
+import { ArrowUpTrayIcon } from "@heroicons/react/24/outline"
 
 const MAX_LENGTH = 200
 
@@ -15,6 +24,7 @@ const Input = ({
   label,
   value,
   onChange,
+  fileName,
   ...rest
 }) => {
   const fgColor = useQrStore(state => state.fgColor)
@@ -66,16 +76,60 @@ const Input = ({
     }
   }
 
-  return (
-    <div className="mb-2 flex w-auto shrink grow flex-col gap-1">
-      <label className="text-sm font-light text-gray-500" htmlFor={id}>
-        {label}
-      </label>
+  const hiddenFileInput = useRef(null)
 
-      {withColorForm ? (
-        <div className="flex w-full items-center gap-4">
+  const handleClick = () => {
+    hiddenFileInput.current.click()
+  }
+
+  const getContent = () => {
+    if (type === "file") {
+      return (
+        <div className="mt-4 flex grow-0 flex-wrap items-center gap-2">
+          <Button onClick={handleClick} icon={true}>
+            <span>Vyberte logo</span>
+            <ArrowUpTrayIcon className="h-4.5 w-4.5 text-sky-600 group-hover:text-white" />
+          </Button>
           <input
-            className="w-full grow rounded-[20px] bg-gray-100 px-4 py-1.5 text-base placeholder:text-gray-500 focus:outline-sky-600"
+            id={id}
+            type={type}
+            ref={hiddenFileInput}
+            onChange={onChange}
+            className="hidden"
+            name={name}
+            {...rest}
+          />
+          <p className="pl-2 text-sm">{fileName}</p>
+        </div>
+      )
+    } else {
+      if (withColorForm) {
+        return (
+          <div className="flex w-full items-center gap-4">
+            <input
+              className="w-full grow rounded-[20px] bg-gray-100 px-4 py-1.5 text-base placeholder:text-gray-500 focus:outline-sky-600"
+              id={id}
+              type={type}
+              placeholder={placeholder}
+              value={value}
+              onChange={onChange}
+              name={name}
+              maxLength={MAX_LENGTH}
+              {...rest}
+            />
+            <input
+              className="bg-gey-100 rounded-sm"
+              type="color"
+              value={getColorValue()}
+              onChange={onChange}
+              name={name}
+            />
+          </div>
+        )
+      } else {
+        return (
+          <input
+            className="rounded-[20px] bg-gray-100 px-4 py-1.5 text-base placeholder:text-gray-500 focus:outline-sky-600"
             id={id}
             type={type}
             placeholder={placeholder}
@@ -85,27 +139,17 @@ const Input = ({
             maxLength={MAX_LENGTH}
             {...rest}
           />
-          <input
-            className="bg-gey-100 rounded-sm"
-            type="color"
-            value={getColorValue()}
-            onChange={onChange}
-            name={name}
-          />
-        </div>
-      ) : (
-        <input
-          className="rounded-[20px] bg-gray-100 px-4 py-1.5 text-base placeholder:text-gray-500 focus:outline-sky-600"
-          id={id}
-          type={type}
-          placeholder={placeholder}
-          value={value}
-          onChange={onChange}
-          name={name}
-          maxLength={MAX_LENGTH}
-          {...rest}
-        />
-      )}
+        )
+      }
+    }
+  }
+  return (
+    <div className="mb-2 flex w-auto shrink grow flex-col gap-1">
+      <label className="text-sm font-light text-gray-500" htmlFor={id}>
+        {label}
+      </label>
+
+      {getContent()}
     </div>
   )
 }

@@ -21,7 +21,7 @@
     "canvas-to-svg": "^1.0.3",
     "canvg": "^4.0.1",
     "easyqrcodejs": "^4.4.13",
-    "framer-motion": "^10.5.0",
+    "framer-motion": "^10.6.0",
     "next": "13.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -36,7 +36,7 @@
     "eslint-config-next": "13.2.4",
     "postcss": "^8.4.21",
     "prettier": "^2.8.4",
-    "prettier-plugin-tailwindcss": "^0.2.4",
+    "prettier-plugin-tailwindcss": "^0.2.5",
     "tailwindcss": "^3.2.7"
   }
 }

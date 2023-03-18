@@ -31,6 +31,7 @@ const QrCode = () => {
   const transparentBackground = useQrStore(state => state.transparentBackground)
   const colorfulCorners = useQrStore(state => state.colorfulCorners)
   const correctionLevel = useQrStore(state => state.correctionLevel)
+  const logoUrl = useQrStore(state => state.logoUrl)
 
   const qrCodeRef = useRef(null)
 
@@ -69,6 +70,10 @@ const QrCode = () => {
       options.PI_BL = eyeColor[2].inner
     }
 
+    if (logoUrl) {
+      options.logo = logoUrl
+    }
+
     const qr = new QRCode(qrCodeRef.current, options)
   }, [
     value,
@@ -78,6 +83,7 @@ const QrCode = () => {
     colorfulCorners,
     transparentBackground,
     correctionLevel,
+    logoUrl,
   ])
 
   const handleDownload = format => {
