@@ -40,7 +40,7 @@ const SettingsForm = () => {
         />
       </div>
       <p className="mt-4 text-xs italic text-gray-500">
-        *platí pro stáhnutý QR kód ve formátech PNG a WEBP
+        *platí pro stažený QR kód ve formátech PNG a WEBP
       </p>
     </div>
   )
