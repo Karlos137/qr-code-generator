@@ -7,7 +7,7 @@ const Seo = ({
 }) => {
   return (
     <Head>
-      <title>{`${title} | QRkodegenerator.cz`}</title>
+      <title>{`${title} | QRkodgenerator.cz`}</title>
       <meta name="description" content={description} />
     </Head>
   )
