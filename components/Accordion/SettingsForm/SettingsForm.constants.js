@@ -56,6 +56,6 @@ export const SIZE_OPTIONS = [
   {
     id: "5",
     label: "800px",
-    value: "600",
+    value: "800",
   },
 ]

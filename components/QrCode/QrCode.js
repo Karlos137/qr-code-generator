@@ -34,11 +34,8 @@ import toImg from "react-svg-to-image"
 import useMediaQuery from "../../hooks/useMediaQuery"
 
 const QrCode = () => {
-  const isMobile = useMediaQuery("(max-width: 420px)")
+  const isMobile = useMediaQuery("(max-width: 440px)")
   const isSmallMobile = useMediaQuery("(max-width: 365px)")
-  const [currentQrCodeSize, setCurrentQrCodeSize] = useState(
-    BASE_OPTIONS.width + BASE_OPTIONS.quietZone + 16
-  )
   const value = useQrStore(state => state.value)
   const bgColor = useQrStore(state => state.bgColor)
   const fgColor = useQrStore(state => state.fgColor)
@@ -71,20 +68,6 @@ const QrCode = () => {
         return QRCode.CorrectLevel.L
     }
   }
-
-  useEffect(() => {
-    if (isMobile) {
-      if (isSmallMobile) {
-        setCurrentQrCodeSize(
-          MOBILE_SIZES.smallMobile + BASE_OPTIONS.quietZone + 11
-        )
-      } else {
-        setCurrentQrCodeSize(MOBILE_SIZES.mobile + BASE_OPTIONS.quietZone + 18)
-      }
-    } else {
-      setCurrentQrCodeSize(BASE_OPTIONS.width + BASE_OPTIONS.quietZone + 16)
-    }
-  }, [isSmallMobile, isMobile])
 
   useEffect(() => {
     const options = {
@@ -135,27 +118,31 @@ const QrCode = () => {
     logoBackgroundTransparent,
     isSmallMobile,
     isMobile,
+    getCorrectionLevel,
   ])
 
   const handleDownload = format => {
     if (qrCodeRef.current !== null && qrCodeRef.current?.children?.length > 0) {
+      const currentQrCodeSize =
+        qrCodeRef.current.children?.[0].getBoundingClientRect().width
+
       if (format === "svg") {
-        downloadSvg(qrCodeRef.current.children?.[0], "qrcode", {
+        downloadSvg(qrCodeRef.current.children?.[0], "qr-kod", {
           css: "none",
         })
       }
 
       if (format === "png") {
-        downloadPng(qrCodeRef.current.children?.[0], "qrcode", {
+        downloadPng(qrCodeRef.current.children?.[0], "qr-kod", {
           downloadPNGOptions: { scale: downloadSize / currentQrCodeSize / 2 },
+          css: "none",
         })
       }
 
       if (format === "webp") {
-        toImg("#qr-kod-svg svg", "qrcode", {
+        toImg("#qr-kod-svg svg", "qr-kod", {
           scale: downloadSize / currentQrCodeSize,
           format: "webp",
-          quality: 1,
           download: true,
         })
       }
@@ -163,12 +150,18 @@ const QrCode = () => {
   }
 
   return (
-    <div id="qr-kod" className="mx-auto lg:sticky lg:top-2">
+    <div id="qr-kod" className="mx-auto justify-self-center lg:sticky lg:top-2">
       <div
         id="qr-kod-svg"
         className="min-h-[271px] min-[366px]:min-h-[313px] min-[421px]:min-h-[376px]"
         ref={qrCodeRef}
       />
+      <div className="mt-2 flex items-center gap-1">
+        <ExclamationCircleIcon className="h-4 w-4 text-gray-600" />
+        <p className="text-xs italic text-gray-600">
+          Před stažením nezapomeňte otestovat funkčnost QR kódu!
+        </p>
+      </div>
       <div className="mt-4 flex gap-2">
         <Button
           icon={true}
@@ -206,12 +199,6 @@ const QrCode = () => {
           <span>TISK</span>
           <PrinterIcon className={buttonIconClassNames} />
         </Button>
-      </div>
-      <div className="mt-6 flex items-center gap-2">
-        <ExclamationCircleIcon className="h-6 w-6 text-gray-600" />
-        <p className="text-xs italic text-gray-600">
-          Před použitím QR kódu nezapomeňte otestovat, že funguje správně.
-        </p>
       </div>
     </div>
   )

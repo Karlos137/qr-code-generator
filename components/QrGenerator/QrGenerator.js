@@ -32,7 +32,7 @@ const QrGenerator = () => {
     }
   }
   return (
-    <div className="mx-auto grid max-w-[1260px] grid-cols-1 items-start gap-7.5 px-5 lg:grid-cols-[120px_auto_376px]">
+    <div className="mx-auto grid max-w-[1260px] grid-cols-1 items-start gap-7.5 px-5 lg:grid-cols-[120px_auto_420px]">
       <QrGeneratorMenu />
       <div
         id="qr-kod-nastaveni"

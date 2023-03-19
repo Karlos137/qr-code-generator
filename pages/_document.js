@@ -6,13 +6,12 @@ import Favicon from "../components/Favicon"
 
 export default function Document() {
   return (
-    <Html lang="cs">
+    <Html lang="cs" dir="ltr">
       <Head>
         <style
           type="text/css"
           dangerouslySetInnerHTML={{ __html: mediaStyles }}
         />
-        <meta name="robots" content="noindex, nofollow" />
         <Favicon />
       </Head>
       <body>

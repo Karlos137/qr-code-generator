@@ -12,6 +12,6 @@ export const SECURITY_OPTIONS = [
   {
     id: "3",
     label: "žádné",
-    value: "blank",
+    value: "",
   },
 ]

@@ -11,6 +11,9 @@ import Toggle from "../../Toggle"
 // Store
 import useQrStore from "../../../store/qrStore"
 
+// Heroicons
+import { XMarkIcon } from "@heroicons/react/24/outline"
+
 const LogoForm = () => {
   const logoUrl = useQrStore(state => state.logoUrl)
   const setLogoUrl = useQrStore(state => state.setLogoUrl)
@@ -37,13 +40,18 @@ const LogoForm = () => {
     }
   }
 
+  const handleFileRemove = () => {
+    setLogoUrl("")
+    setLogoFileName("")
+  }
+
   return (
     <>
-      <div className="grid grid-cols-[2fr_1fr] gap-7.5 md:grid-cols-[4fr_1fr]">
+      <div className="grid grid-cols-[2fr_1fr] gap-5 md:grid-cols-[3fr_1fr] xl:grid-cols-[4fr_1fr]">
         <div>
           <Input
             id="logo-input"
-            label="Nahrát logo"
+            label="Nahrát logo*"
             name="logoInput"
             type="file"
             accept="image/*"
@@ -52,15 +60,18 @@ const LogoForm = () => {
           />
         </div>
         {logoUrl && (
-          <div className="flex flex-col px-2">
+          <div className="flex shrink-0 flex-col items-center gap-1 px-2">
             <Image
-              className="mt-auto block max-w-[100%]"
+              className="mt-auto block max-w-[100%] shrink-0"
               src={logoUrl}
               alt="Logo - QR kód"
               width={94}
               height={94}
               quality={97}
             />
+            <div className="w-fit cursor-pointer" onClick={handleFileRemove}>
+              <XMarkIcon className="h-6 w-6 text-red-600 hover:text-red-900" />
+            </div>
           </div>
         )}
       </div>
@@ -86,6 +97,9 @@ const LogoForm = () => {
           }}
         />
       </div>
+      <p className="mt-4 text-xs italic text-gray-500">
+        *doporučujeme nahrávat loga v maximální velikosti 200kb
+      </p>
     </>
   )
 }

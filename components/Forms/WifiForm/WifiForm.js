@@ -26,11 +26,11 @@ const WifiForm = () => {
     })
 
     setValue(
-      `WIFI:T:${wifiValues.security};S:${
+      `WIFI:${wifiValues.security ? `T:${wifiValues.security};` : ""}S:${
         e.target.name === "name" ? e.target.value : wifiValues.name
       };P:${
         e.target.name === "password" ? e.target.value : wifiValues.password
-      };`
+      };;`
     )
   }
 
@@ -41,9 +41,11 @@ const WifiForm = () => {
     })
 
     setValue(
-      `WIFI:T:${optionValue ? optionValue : wifiValues.security};S:${
-        wifiValues.name
-      };P:${wifiValues.password};`
+      `WIFI:T:${
+        optionValue
+          ? optionValue
+          : `${wifiValues.security ? `T:${wifiValues.security};` : ""}`
+      };S:${wifiValues.name};P:${wifiValues.password};;`
     )
   }
 
