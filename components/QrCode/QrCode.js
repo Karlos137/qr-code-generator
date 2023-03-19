@@ -21,7 +21,11 @@ import QRCode from "easyqrcodejs"
 import downloadSvg, { downloadPng } from "svg-crowbar"
 
 // Heroicons
-import { ArrowDownCircleIcon, PrinterIcon } from "@heroicons/react/24/outline"
+import {
+  ArrowDownCircleIcon,
+  PrinterIcon,
+  ExclamationCircleIcon,
+} from "@heroicons/react/24/outline"
 
 // React SVG to image
 import toImg from "react-svg-to-image"
@@ -160,7 +164,11 @@ const QrCode = () => {
 
   return (
     <div id="qr-kod" className="mx-auto lg:sticky lg:top-2">
-      <div id="qr-kod-svg" ref={qrCodeRef} />
+      <div
+        id="qr-kod-svg"
+        className="min-h-[271px] min-[366px]:min-h-[313px] min-[421px]:min-h-[376px]"
+        ref={qrCodeRef}
+      />
       <div className="mt-4 flex gap-2">
         <Button
           icon={true}
@@ -198,6 +206,12 @@ const QrCode = () => {
           <span>TISK</span>
           <PrinterIcon className={buttonIconClassNames} />
         </Button>
+      </div>
+      <div className="mt-6 flex items-center gap-2">
+        <ExclamationCircleIcon className="h-6 w-6 text-gray-600" />
+        <p className="text-xs italic text-gray-600">
+          Před použitím QR kódu nezapomeňte otestovat, že funguje správně.
+        </p>
       </div>
     </div>
   )

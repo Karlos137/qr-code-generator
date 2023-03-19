@@ -138,8 +138,9 @@ const Input = ({
               {...rest}
             />
             <input
-              className="bg-gey-100 rounded-sm"
+              className="rounded-sm bg-gray-100"
               type="color"
+              aria-label={`${label} - barva`}
               value={getColorValue()}
               onChange={onChange}
               name={name}

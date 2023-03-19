@@ -1,6 +1,9 @@
 // React
 import { useState } from "react"
 
+// Next.js
+import Image from "next/image"
+
 // React components
 import Input from "../../Input"
 import Toggle from "../../Toggle"
@@ -50,10 +53,13 @@ const LogoForm = () => {
         </div>
         {logoUrl && (
           <div className="flex flex-col px-2">
-            <img
+            <Image
               className="mt-auto block max-w-[100%]"
               src={logoUrl}
               alt="Logo - QR kód"
+              width={94}
+              height={94}
+              quality={97}
             />
           </div>
         )}

@@ -53,6 +53,7 @@ const EmailForm = () => {
         id="email-text"
         label="Zadejte text e-mailu"
         placeholder="Ahoj!"
+        name="text"
         value={emailValues.text}
         onChange={handleOnChange}
       />
