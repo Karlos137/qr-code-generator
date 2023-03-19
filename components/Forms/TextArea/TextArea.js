@@ -1,4 +1,4 @@
-const MAX_LENGTH = 1010
+const MAX_LENGTH = 850
 
 const TextArea = ({ type = "text", placeholder, id, label, ...rest }) => {
   return (

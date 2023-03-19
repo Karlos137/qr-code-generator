@@ -4,7 +4,7 @@ export const BASE_OPTIONS = {
   quietZone: 20,
   width: 335,
   height: 335,
-  drawer: "svg",
+  drawer: "canvas",
 }
 
 export const MOBILE_SIZES = {
