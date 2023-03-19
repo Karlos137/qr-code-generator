@@ -54,14 +54,14 @@ const HamburgerMenu = () => {
       </main>
       <footer className="mt-auto flex flex-col items-center gap-4 px-5 pb-5">
         <p className="text-center">qrkodgenerator.cz</p>
-        <Link
+        {/* <Link
           className="text-lg hover:text-orange-400"
           href="mailto:test@test.cz"
           title="test@test.cz"
           aria-label="Kontakt - e-mail"
         >
           <EnvelopeIcon className="h-6 w-6" />
-        </Link>
+        </Link> */}
       </footer>
     </div>
   )

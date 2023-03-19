@@ -13,6 +13,7 @@ import useAppStore from "../../store/appStore"
 
 const Navbar = () => {
   const setHamburgerMenuOpen = useAppStore(state => state.setHamburgerMenuOpen)
+
   return (
     <div className="mx-auto max-w-[1920px] px-5 pb-3 pt-5 md:py-5">
       <div className="flex items-center justify-between rounded-[100px] bg-white px-8.5 py-[9px]">
