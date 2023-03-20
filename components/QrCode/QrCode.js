@@ -99,7 +99,7 @@ const QrCode = () => {
         ) : (
           <QRCodeSVG
             value={value}
-            size={350}
+            size={SIZE}
             bgColor={transparentBackground ? TRANSPARENT_BACKGROUND : bgColor}
             fgColor={fgColor}
             level={correctionLevel}
