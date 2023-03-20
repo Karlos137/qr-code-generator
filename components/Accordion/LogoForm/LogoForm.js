@@ -1,5 +1,5 @@
 // React
-import { useState } from "react"
+import { useState, useRef } from "react"
 
 // Next.js
 import Image from "next/image"
@@ -43,6 +43,10 @@ const LogoForm = () => {
   const handleFileRemove = () => {
     setLogoUrl("")
     setLogoFileName("")
+    const input = document.getElementById("logo-input")
+    if (input) {
+      input.value = ""
+    }
   }
 
   return (
@@ -89,7 +93,7 @@ const LogoForm = () => {
           }}
         />
         <Toggle
-          label="Odebrat pozadí za logem"
+          label="Přidat pozadí za logo"
           enabled={logoBackgroundTransparent}
           disabled={!logoUrl}
           onChange={() => {
@@ -98,7 +102,7 @@ const LogoForm = () => {
         />
       </div>
       <p className="mt-4 text-xs italic text-gray-500">
-        *doporučujeme nahrávat loga v maximální velikosti 200kb
+        *doporučujeme nahrávat loga v maximální velikosti 250kb
       </p>
     </>
   )

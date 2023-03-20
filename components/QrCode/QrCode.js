@@ -1,5 +1,5 @@
 // React
-import { useRef, useEffect, useState } from "react"
+import { useRef } from "react"
 
 // React components
 import Button from "../Button"
@@ -8,14 +8,7 @@ import Button from "../Button"
 import useQrStore from "../../store/qrStore"
 
 // Constants
-import {
-  TRANSPARENT_BACKGROUND,
-  BASE_OPTIONS,
-  MOBILE_SIZES,
-} from "./QrCode.constants"
-
-// easyqrcodejs
-import QRCode from "easyqrcodejs"
+import { TRANSPARENT_BACKGROUND, SIZE } from "./QrCode.constants"
 
 // SVG Crowbar
 import downloadSvg, { downloadPng } from "svg-crowbar"
@@ -30,18 +23,14 @@ import {
 // React SVG to image
 import toImg from "react-svg-to-image"
 
-// Hooks
-import useMediaQuery from "../../hooks/useMediaQuery"
+// qrcode.react
+import { QRCodeSVG } from "qrcode.react"
 
 const QrCode = () => {
-  const isMobile = useMediaQuery("(max-width: 440px)")
-  const isSmallMobile = useMediaQuery("(max-width: 365px)")
   const value = useQrStore(state => state.value)
   const bgColor = useQrStore(state => state.bgColor)
   const fgColor = useQrStore(state => state.fgColor)
-  const eyeColor = useQrStore(state => state.eyeColor)
   const transparentBackground = useQrStore(state => state.transparentBackground)
-  const colorfulCorners = useQrStore(state => state.colorfulCorners)
   const correctionLevel = useQrStore(state => state.correctionLevel)
   const logoUrl = useQrStore(state => state.logoUrl)
   const logoSize = useQrStore(state => state.logoSize)
@@ -49,101 +38,41 @@ const QrCode = () => {
     state => state.logoBackgroundTransparent
   )
   const downloadSize = useQrStore(state => state.downloadSize)
-
-  const qrCodeRef = useRef(null)
+  // const eyeColor = useQrStore(state => state.eyeColor)
+  // const colorfulCorners = useQrStore(state => state.colorfulCorners)
 
   const buttonIconClassNames = "h-4.5 w-4.5 text-sky-600 group-hover:text-white"
 
-  const getCorrectionLevel = () => {
-    switch (correctionLevel) {
-      case "L":
-        return QRCode.CorrectLevel.L
-      case "M":
-        return QRCode.CorrectLevel.M
-      case "Q":
-        return QRCode.CorrectLevel.Q
-      case "H":
-        return QRCode.CorrectLevel.H
-      default:
-        return QRCode.CorrectLevel.L
-    }
-  }
-
-  useEffect(() => {
-    const options = {
-      ...BASE_OPTIONS,
-      width: isSmallMobile
-        ? MOBILE_SIZES.smallMobile
-        : isMobile
-        ? MOBILE_SIZES.mobile
-        : BASE_OPTIONS.width,
-      height: isSmallMobile
-        ? MOBILE_SIZES.smallMobile
-        : isMobile
-        ? MOBILE_SIZES.mobile
-        : BASE_OPTIONS.height,
-      text: value ? value : " ",
-      colorDark: fgColor,
-      colorLight: transparentBackground ? TRANSPARENT_BACKGROUND : bgColor,
-      correctLevel: getCorrectionLevel(),
-      logoWidth: (BASE_OPTIONS.width / 3.5 / 100) * logoSize,
-      logoHeight: (BASE_OPTIONS.width / 3.5 / 100) * logoSize,
-      logoBackgroundTransparent: logoBackgroundTransparent,
-    }
-
-    if (colorfulCorners) {
-      options.PO_TL = eyeColor[0].outer
-      options.PI_TL = eyeColor[0].inner
-      options.PO_TR = eyeColor[1].outer
-      options.PI_TR = eyeColor[1].inner
-      options.PO_BL = eyeColor[2].outer
-      options.PI_BL = eyeColor[2].inner
-    }
-
-    if (logoUrl) {
-      options.logo = logoUrl
-    }
-
-    const qr = new QRCode(qrCodeRef.current, options)
-  }, [
-    value,
-    fgColor,
-    bgColor,
-    eyeColor,
-    colorfulCorners,
-    transparentBackground,
-    correctionLevel,
-    logoUrl,
-    logoSize,
-    logoBackgroundTransparent,
-    isSmallMobile,
-    isMobile,
-    getCorrectionLevel,
-  ])
+  const qrCodeRef = useRef(null)
 
   const handleDownload = format => {
     if (qrCodeRef.current !== null && qrCodeRef.current?.children?.length > 0) {
-      const currentQrCodeSize =
-        qrCodeRef.current.children?.[0].getBoundingClientRect().width
+      const qrSvg = qrCodeRef.current.children?.[0]
 
       if (format === "svg") {
-        downloadSvg(qrCodeRef.current.children?.[0], "qr-kod", {
+        downloadSvg(qrSvg, "qr-kod", {
           css: "none",
         })
       }
 
       if (format === "png") {
-        downloadPng(qrCodeRef.current.children?.[0], "qr-kod", {
-          downloadPNGOptions: { scale: downloadSize / currentQrCodeSize / 2 },
+        downloadPng(qrSvg, "qr-kod", {
+          downloadPNGOptions: { scale: downloadSize / SIZE / 2 },
           css: "none",
         })
       }
 
       if (format === "webp") {
-        toImg("#qr-kod-svg svg", "qr-kod", {
-          scale: downloadSize / currentQrCodeSize,
+        const qrSvgCloned = qrSvg.cloneNode(true)
+        qrSvgCloned.id = "qr-kod-svg-cloned"
+        qrCodeRef.current.appendChild(qrSvgCloned)
+
+        toImg("#qr-kod-svg-cloned", "qr-kod", {
+          scale: downloadSize / SIZE,
           format: "webp",
           download: true,
+        }).then(() => {
+          qrCodeRef.current.removeChild(qrSvgCloned)
         })
       }
     }
@@ -151,11 +80,34 @@ const QrCode = () => {
 
   return (
     <div id="qr-kod" className="mx-auto justify-self-center lg:sticky lg:top-2">
-      <div
-        id="qr-kod-svg"
-        className="min-h-[271px] min-[366px]:min-h-[313px] min-[421px]:min-h-[376px]"
-        ref={qrCodeRef}
-      />
+      <div ref={qrCodeRef} id="qr-kod-svg">
+        {logoUrl ? (
+          <QRCodeSVG
+            value={value}
+            size={SIZE}
+            bgColor={transparentBackground ? TRANSPARENT_BACKGROUND : bgColor}
+            fgColor={fgColor}
+            level={correctionLevel}
+            includeMargin={true}
+            imageSettings={{
+              src: logoUrl,
+              width: logoSize,
+              height: logoSize,
+              excavate: logoBackgroundTransparent,
+            }}
+          />
+        ) : (
+          <QRCodeSVG
+            value={value}
+            size={350}
+            bgColor={transparentBackground ? TRANSPARENT_BACKGROUND : bgColor}
+            fgColor={fgColor}
+            level={correctionLevel}
+            includeMargin={true}
+          />
+        )}
+      </div>
+
       <div className="mt-2 flex items-center gap-1">
         <ExclamationCircleIcon className="h-4 w-4 text-gray-600" />
         <p className="text-xs italic text-gray-600">
@@ -163,15 +115,6 @@ const QrCode = () => {
         </p>
       </div>
       <div className="mt-4 flex gap-2">
-        <Button
-          icon={true}
-          onClick={() => {
-            handleDownload("svg")
-          }}
-        >
-          <span>SVG</span>
-          <ArrowDownCircleIcon className={buttonIconClassNames} />
-        </Button>
         <Button
           icon={true}
           onClick={() => {
@@ -188,6 +131,15 @@ const QrCode = () => {
           }}
         >
           <span>WEBP</span>
+          <ArrowDownCircleIcon className={buttonIconClassNames} />
+        </Button>
+        <Button
+          icon={true}
+          onClick={() => {
+            handleDownload("svg")
+          }}
+        >
+          <span>SVG</span>
           <ArrowDownCircleIcon className={buttonIconClassNames} />
         </Button>
         <Button

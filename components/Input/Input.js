@@ -29,6 +29,7 @@ const Input = ({
   onChange,
   fileName,
   disabled,
+  ref,
   ...rest
 }) => {
   const fgColor = useQrStore(state => state.fgColor)

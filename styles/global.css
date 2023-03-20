@@ -116,8 +116,10 @@
     @apply text-gray-800;
   }
 
-  #qr-kod-svg svg {
+  #qr-kod-svg {
     margin: auto;
+    overflow: hidden;
+    max-height: 350px;
   }
 
   ::selection {

@@ -19,8 +19,8 @@ const ColorsForm = () => {
   const setTransparentBackground = useQrStore(
     state => state.setTransparentBackground
   )
-  const colorfulCorners = useQrStore(state => state.colorfulCorners)
-  const setCorolfulCorner = useQrStore(state => state.setCorolfulCorner)
+  // const colorfulCorners = useQrStore(state => state.colorfulCorners)
+  // const setCorolfulCorner = useQrStore(state => state.setCorolfulCorner)
   const bgColor = useQrStore(state => state.bgColor)
   const fgColor = useQrStore(state => state.fgColor)
   const eyeColor = useQrStore(state => state.eyeColor)
@@ -59,85 +59,85 @@ const ColorsForm = () => {
     }
   }
 
-  const handleOnCornerChange = e => {
-    switch (e.target.name) {
-      case "outerLtCorner":
-        const newEyeColor0 = [...eyeColor]
-        newEyeColor0[0] = {
-          outer: e.target.value,
-          inner: newEyeColor0[0].inner,
-        }
-        setColorValues({
-          ...colorValues,
-          eyeColor: newEyeColor0,
-        })
-        setEyeColor(newEyeColor0)
-        break
-      case "innerLtCorner":
-        const newInnerEyeColor0 = [...eyeColor]
-        newInnerEyeColor0[0] = {
-          outer: newInnerEyeColor0[0].outer,
-          inner: e.target.value,
-        }
-        setColorValues({
-          ...colorValues,
-          eyeColor: newInnerEyeColor0,
-        })
-        setEyeColor(newInnerEyeColor0)
-        break
-      case "outerRtCorner":
-        const newEyeColor1 = [...eyeColor]
-        newEyeColor1[1] = {
-          outer: e.target.value,
-          inner: newEyeColor1[1].inner,
-        }
-        setColorValues({
-          ...colorValues,
-          eyeColor: newEyeColor1,
-        })
-        setEyeColor(newEyeColor1)
-        break
-      case "innerRtCorner":
-        const newInnerEyeColor1 = [...eyeColor]
-        newInnerEyeColor1[1] = {
-          outer: newInnerEyeColor1[1].outer,
-          inner: e.target.value,
-        }
-        setColorValues({
-          ...colorValues,
-          eyeColor: newInnerEyeColor1,
-        })
-        setEyeColor(newInnerEyeColor1)
-        break
-      case "outerLbCorner":
-        const newEyeColor2 = [...eyeColor]
-        newEyeColor2[2] = {
-          outer: e.target.value,
-          inner: newEyeColor2[1].inner,
-        }
-        setColorValues({
-          ...colorValues,
-          eyeColor: newEyeColor2,
-        })
-        setEyeColor(newEyeColor2)
-        break
+  // const handleOnCornerChange = e => {
+  //   switch (e.target.name) {
+  //     case "outerLtCorner":
+  //       const newEyeColor0 = [...eyeColor]
+  //       newEyeColor0[0] = {
+  //         outer: e.target.value,
+  //         inner: newEyeColor0[0].inner,
+  //       }
+  //       setColorValues({
+  //         ...colorValues,
+  //         eyeColor: newEyeColor0,
+  //       })
+  //       setEyeColor(newEyeColor0)
+  //       break
+  //     case "innerLtCorner":
+  //       const newInnerEyeColor0 = [...eyeColor]
+  //       newInnerEyeColor0[0] = {
+  //         outer: newInnerEyeColor0[0].outer,
+  //         inner: e.target.value,
+  //       }
+  //       setColorValues({
+  //         ...colorValues,
+  //         eyeColor: newInnerEyeColor0,
+  //       })
+  //       setEyeColor(newInnerEyeColor0)
+  //       break
+  //     case "outerRtCorner":
+  //       const newEyeColor1 = [...eyeColor]
+  //       newEyeColor1[1] = {
+  //         outer: e.target.value,
+  //         inner: newEyeColor1[1].inner,
+  //       }
+  //       setColorValues({
+  //         ...colorValues,
+  //         eyeColor: newEyeColor1,
+  //       })
+  //       setEyeColor(newEyeColor1)
+  //       break
+  //     case "innerRtCorner":
+  //       const newInnerEyeColor1 = [...eyeColor]
+  //       newInnerEyeColor1[1] = {
+  //         outer: newInnerEyeColor1[1].outer,
+  //         inner: e.target.value,
+  //       }
+  //       setColorValues({
+  //         ...colorValues,
+  //         eyeColor: newInnerEyeColor1,
+  //       })
+  //       setEyeColor(newInnerEyeColor1)
+  //       break
+  //     case "outerLbCorner":
+  //       const newEyeColor2 = [...eyeColor]
+  //       newEyeColor2[2] = {
+  //         outer: e.target.value,
+  //         inner: newEyeColor2[1].inner,
+  //       }
+  //       setColorValues({
+  //         ...colorValues,
+  //         eyeColor: newEyeColor2,
+  //       })
+  //       setEyeColor(newEyeColor2)
+  //       break
 
-      case "innerLbCorner":
-        const newInnerEyeColor2 = [...eyeColor]
-        newInnerEyeColor2[2] = {
-          outer: newInnerEyeColor2[1].outer,
-          inner: e.target.value,
-        }
-        setColorValues({
-          ...colorValues,
-          eyeColor: newInnerEyeColor2,
-        })
-        setEyeColor(newInnerEyeColor2)
-        break
-      default:
-        setEyeColor(DEFAULT_COLORS.eyeColor)
-    }
-  }
+  //     case "innerLbCorner":
+  //       const newInnerEyeColor2 = [...eyeColor]
+  //       newInnerEyeColor2[2] = {
+  //         outer: newInnerEyeColor2[1].outer,
+  //         inner: e.target.value,
+  //       }
+  //       setColorValues({
+  //         ...colorValues,
+  //         eyeColor: newInnerEyeColor2,
+  //       })
+  //       setEyeColor(newInnerEyeColor2)
+  //       break
+  //     default:
+  //       setEyeColor(DEFAULT_COLORS.eyeColor)
+  //   }
+  // }
 
   return (
     <div>
@@ -171,7 +171,7 @@ const ColorsForm = () => {
         </div>
       </div>
       <div className="mt-4">
-        <Toggle
+        {/* <Toggle
           label="Barevné rohy"
           enabled={colorfulCorners}
           onChange={() => {
@@ -241,7 +241,7 @@ const ColorsForm = () => {
               />
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   )
