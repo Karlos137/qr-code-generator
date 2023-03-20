@@ -30,6 +30,6 @@ const Forms = () => {
         return <UrlForm />
     }
   }
-  return <div className="mb-8">{getForm(formSelected)}</div>
+  return <div className="print-hide mb-8">{getForm(formSelected)}</div>
 }
 export default Forms

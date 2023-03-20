@@ -108,13 +108,13 @@ const QrCode = () => {
         )}
       </div>
 
-      <div className="mt-2 flex items-center gap-1">
+      <div className="print-hide mt-2 flex items-center gap-1">
         <ExclamationCircleIcon className="h-4 w-4 text-gray-600" />
         <p className="text-xs italic text-gray-600">
           Před stažením nezapomeňte otestovat funkčnost QR kódu!
         </p>
       </div>
-      <div className="mt-4 flex gap-2">
+      <div className="print-hide mt-4 flex gap-2">
         <Button
           icon={true}
           onClick={() => {

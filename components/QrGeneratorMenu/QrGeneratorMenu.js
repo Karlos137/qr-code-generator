@@ -14,7 +14,7 @@ const QrGeneratorMenu = () => {
   return (
     <ul
       id="qr-kod-menu"
-      className="lg:gap:6 mx-auto flex w-full max-w-[720px] flex-wrap justify-center gap-4 rounded-[30px] bg-white px-2 py-4 lg:sticky lg:top-2 lg:max-w-[120px] lg:flex-col lg:flex-nowrap lg:justify-start lg:py-6"
+      className="print-hide lg:gap:6 mx-auto flex w-full max-w-[720px] flex-wrap justify-center gap-4 rounded-[30px] bg-white px-2 py-4 lg:sticky lg:top-2 lg:max-w-[120px] lg:flex-col lg:flex-nowrap lg:justify-start lg:py-6"
     >
       <li>
         <Button

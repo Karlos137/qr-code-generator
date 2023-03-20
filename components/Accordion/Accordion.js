@@ -19,7 +19,7 @@ const Accordion = () => {
   })
 
   return (
-    <div>
+    <div className="print-hide">
       <AccordionItem
         title="Barvy"
         icon="sparkles"

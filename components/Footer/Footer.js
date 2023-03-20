@@ -9,7 +9,7 @@ import { EnvelopeIcon } from "@heroicons/react/24/outline"
 
 const Footer = () => {
   return (
-    <footer className="mt-auto flex flex-col items-center bg-white px-5 py-4 text-center">
+    <footer className="print-hide mt-auto flex flex-col items-center bg-white px-5 py-4 text-center">
       <Logo />
       <p className="mt-0.5 mb-1">qrkodgenerator.cz</p>
       {/* <Link

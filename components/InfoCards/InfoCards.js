@@ -4,7 +4,7 @@ import Button from "../Button"
 
 const InfoCards = () => {
   return (
-    <div className="my-16 flex flex-col gap-10 px-5 lg:my-32 lg:gap-8">
+    <div className="print-hide my-16 flex flex-col gap-10 px-5 lg:my-32 lg:gap-8">
       <Card orientation="right" id="jak-na-to">
         <h2 className="mb-2 text-[1.3125rem] font-medium lg:mb-4">
           Jak na to?
