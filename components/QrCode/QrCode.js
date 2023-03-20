@@ -67,12 +67,23 @@ const QrCode = () => {
         qrSvgCloned.id = "qr-kod-svg-cloned"
         qrCodeRef.current.appendChild(qrSvgCloned)
 
-        toImg("#qr-kod-svg-cloned", "qr-kod", {
-          scale: downloadSize / SIZE,
-          format: "webp",
-          download: true,
-        }).then(() => {
-          qrCodeRef.current.removeChild(qrSvgCloned)
+        const loadPromise = new Promise(resolve => {
+          qrSvgCloned.addEventListener("load", resolve)
+        })
+
+        loadPromise.then(() => {
+          toImg(
+            "#qr-kod-svg-cloned",
+            "qr-kod",
+            {
+              scale: downloadSize / SIZE,
+              format: "webp",
+              download: true,
+            },
+            qrSvgCloned
+          ).then(() => {
+            qrCodeRef.current.removeChild(qrSvgCloned)
+          })
         })
       }
     }
