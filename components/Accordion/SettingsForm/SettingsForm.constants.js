@@ -4,8 +4,8 @@ export const DEFAULT_SETTINGS = {
     value: "H",
   },
   size: {
-    label: "200px",
-    value: "200",
+    label: "400px",
+    value: "400",
   },
 }
 
