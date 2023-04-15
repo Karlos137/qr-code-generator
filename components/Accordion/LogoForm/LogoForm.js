@@ -1,5 +1,5 @@
 // React
-import { useState, useRef } from "react"
+import { useState } from "react"
 
 // Next.js
 import Image from "next/image"
@@ -19,6 +19,7 @@ const LogoForm = () => {
   const setLogoUrl = useQrStore(state => state.setLogoUrl)
   const logoSize = useQrStore(state => state.logoSize)
   const setLogoSize = useQrStore(state => state.setLogoSize)
+  const setLogoRatio = useQrStore(state => state.setLogoRatio)
   const logoBackgroundTransparent = useQrStore(
     state => state.logoBackgroundTransparent
   )
@@ -34,8 +35,19 @@ const LogoForm = () => {
       reader.readAsDataURL(file)
       reader.onloadend = () => {
         const dataUrl = reader.result
-        setLogoUrl(dataUrl)
-        setLogoFileName(file.name)
+
+        const img = new window.Image()
+        img.src = dataUrl
+
+        img.onload = () => {
+          const width = img.width
+          const height = img.height
+          const ratio = width / height
+
+          setLogoRatio(ratio)
+          setLogoUrl(dataUrl)
+          setLogoFileName(file.name)
+        }
       }
     }
   }
@@ -102,7 +114,7 @@ const LogoForm = () => {
         />
       </div>
       <p className="mt-4 text-xs italic text-gray-500">
-        *doporučujeme nahrávat loga v maximální velikosti 250kb
+        *doporučujeme nahrávat loga v maximální velikosti 500kb
       </p>
     </>
   )

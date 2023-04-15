@@ -29,6 +29,7 @@ const QrCode = () => {
   const correctionLevel = useQrStore(state => state.correctionLevel)
   const logoUrl = useQrStore(state => state.logoUrl)
   const logoSize = useQrStore(state => state.logoSize)
+  const logoRatio = useQrStore(state => state.logoRatio)
   const logoBackgroundTransparent = useQrStore(
     state => state.logoBackgroundTransparent
   )
@@ -87,6 +88,10 @@ const QrCode = () => {
           fgColor={fgColor}
           ecLevel={correctionLevel}
           eyeColor={colorfulCorners ? eyeColor : DEFAULT_COLORS}
+          logoImage={logoUrl}
+          logoWidth={logoSize}
+          logoHeight={(logoSize / logoRatio).toFixed(2)}
+          removeQrCodeBehindLogo={logoBackgroundTransparent}
         />
       </div>
 
