@@ -59,7 +59,7 @@ const Accordion = () => {
         TODO VZHLED
       </AccordionItem> */}
       <AccordionItem
-        title="Logo"
+        title="Logo (beta)"
         icon="image"
         open={accordionItemsOpen.logo}
         onHeaderClick={() => {
