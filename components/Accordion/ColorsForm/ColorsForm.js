@@ -113,7 +113,7 @@ const ColorsForm = () => {
         const newEyeColor2 = [...eyeColor]
         newEyeColor2[2] = {
           outer: e.target.value,
-          inner: newEyeColor2[1].inner,
+          inner: newEyeColor2[2].inner,
         }
         setColorValues({
           ...colorValues,
@@ -125,7 +125,7 @@ const ColorsForm = () => {
       case "innerLbCorner":
         const newInnerEyeColor2 = [...eyeColor]
         newInnerEyeColor2[2] = {
-          outer: newInnerEyeColor2[1].outer,
+          outer: newInnerEyeColor2[2].outer,
           inner: e.target.value,
         }
         setColorValues({
