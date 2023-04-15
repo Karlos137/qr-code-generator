@@ -8,7 +8,11 @@ Keywords:
 - React
 - Next.js
 - TailwindCSS
+- Tailwind Merge
+- Heroicons
 - headlessUI
+- React QRcode logo
+- Zustand
 - ESLint
 - Prettier
 
