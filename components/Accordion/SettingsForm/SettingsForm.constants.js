@@ -4,8 +4,8 @@ export const DEFAULT_SETTINGS = {
     value: "M",
   },
   size: {
-    label: "400px",
-    value: "400",
+    label: "600px",
+    value: "600",
   },
 }
 
@@ -57,5 +57,10 @@ export const SIZE_OPTIONS = [
     id: "5",
     label: "800px",
     value: "800",
+  },
+  {
+    id: "6",
+    label: "1000px",
+    value: "1000",
   },
 ]
