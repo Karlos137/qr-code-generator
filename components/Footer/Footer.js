@@ -5,13 +5,13 @@ import Link from "next/link"
 import Logo from "../svgs/Logo"
 
 // Heroicons
-import { EnvelopeIcon } from "@heroicons/react/24/outline"
+// import { EnvelopeIcon } from "@heroicons/react/24/outline"
 
 const Footer = () => {
   return (
     <footer className="print-hide mt-auto flex flex-col items-center bg-white px-5 py-4 text-center">
       <Logo />
-      <p className="mt-0.5 mb-1">qrkodgenerator.cz</p>
+      <p className="mb-1 mt-0.5">qrkodgenerator.cz</p>
       {/* <Link
         href="mailto:test@test.cz"
         title="test@test.cz"
@@ -19,7 +19,7 @@ const Footer = () => {
       >
         <EnvelopeIcon className="h-6 w-6 text-orange-500 hover:text-sky-500" />
       </Link> */}
-      <p className="mt-6 mb-2">
+      <p className="mb-2 mt-6">
         QR Code je registrovaná ochranná známka společnosti DENSO WAVE
         INCORPORATED.
       </p>
