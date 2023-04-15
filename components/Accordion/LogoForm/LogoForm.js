@@ -97,11 +97,11 @@ const LogoForm = () => {
           id="logo-size"
           label="Velikost loga"
           disabled={!logoUrl}
-          value={logoSize}
+          value={logoSize / 2}
           min={40}
           max={100}
           onChange={e => {
-            setLogoSize(e.target.value)
+            setLogoSize(e.target.value * 2)
           }}
         />
         <Toggle
