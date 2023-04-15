@@ -9,6 +9,7 @@ import useQrStore from "../../store/qrStore"
 
 // Constants
 import { TRANSPARENT_BACKGROUND, SIZE } from "./QrCode.constants"
+import { DEFAULT_COLORS } from "../Accordion/ColorsForm/ColorsForm.constants"
 
 // Heroicons
 import {
@@ -32,8 +33,8 @@ const QrCode = () => {
     state => state.logoBackgroundTransparent
   )
   const downloadSize = useQrStore(state => state.downloadSize)
-  // const eyeColor = useQrStore(state => state.eyeColor)
-  // const colorfulCorners = useQrStore(state => state.colorfulCorners)
+  const eyeColor = useQrStore(state => state.eyeColor)
+  const colorfulCorners = useQrStore(state => state.colorfulCorners)
 
   const buttonIconClassNames = "h-4.5 w-4.5 text-sky-600 group-hover:text-white"
 
@@ -85,6 +86,7 @@ const QrCode = () => {
           bgColor={transparentBackground ? TRANSPARENT_BACKGROUND : bgColor}
           fgColor={fgColor}
           ecLevel={correctionLevel}
+          eyeColor={colorfulCorners ? eyeColor : DEFAULT_COLORS}
         />
       </div>
 
