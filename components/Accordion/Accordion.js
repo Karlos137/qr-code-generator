@@ -58,7 +58,7 @@ const Accordion = () => {
       >
         TODO VZHLED
       </AccordionItem> */}
-      {/* <AccordionItem
+      <AccordionItem
         title="Logo"
         icon="image"
         open={accordionItemsOpen.logo}
@@ -76,7 +76,7 @@ const Accordion = () => {
         }}
       >
         <LogoForm />
-      </AccordionItem> */}
+      </AccordionItem>
       <AccordionItem
         title="Nastavení"
         icon="settings"

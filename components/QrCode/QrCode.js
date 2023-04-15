@@ -9,9 +9,7 @@ import useQrStore from "../../store/qrStore"
 
 // Constants
 import { TRANSPARENT_BACKGROUND, SIZE } from "./QrCode.constants"
-
-// SVG Crowbar
-import downloadSvg, { downloadPng } from "svg-crowbar"
+import { DEFAULT_COLORS } from "../Accordion/ColorsForm/ColorsForm.constants"
 
 // Heroicons
 import {
@@ -20,11 +18,8 @@ import {
   ExclamationCircleIcon,
 } from "@heroicons/react/24/outline"
 
-// React SVG to image
-import toImg from "react-svg-to-image"
-
-// qrcode.react
-import { QRCodeSVG } from "qrcode.react"
+// React qrcode logo
+import { QRCode } from "react-qrcode-logo"
 
 const QrCode = () => {
   const value = useQrStore(state => state.value)
@@ -34,12 +29,13 @@ const QrCode = () => {
   const correctionLevel = useQrStore(state => state.correctionLevel)
   const logoUrl = useQrStore(state => state.logoUrl)
   const logoSize = useQrStore(state => state.logoSize)
+  const logoRatio = useQrStore(state => state.logoRatio)
   const logoBackgroundTransparent = useQrStore(
     state => state.logoBackgroundTransparent
   )
   const downloadSize = useQrStore(state => state.downloadSize)
-  // const eyeColor = useQrStore(state => state.eyeColor)
-  // const colorfulCorners = useQrStore(state => state.colorfulCorners)
+  const eyeColor = useQrStore(state => state.eyeColor)
+  const colorfulCorners = useQrStore(state => state.colorfulCorners)
 
   const buttonIconClassNames = "h-4.5 w-4.5 text-sky-600 group-hover:text-white"
 
@@ -47,65 +43,56 @@ const QrCode = () => {
 
   const handleDownload = format => {
     if (qrCodeRef.current !== null && qrCodeRef.current?.children?.length > 0) {
-      const qrSvg = qrCodeRef.current.children?.[0]
+      const qrCanvas = qrCodeRef.current.children?.[0]
+      const width = downloadSize
+      const height = downloadSize
 
-      if (format === "svg") {
-        downloadSvg(qrSvg, "qr-kod", {
-          css: "none",
-        })
-      }
+      // Create a new canvas for the resized image
+      const resizedCanvas = document.createElement("canvas")
+      resizedCanvas.width = width
+      resizedCanvas.height = height
+      const resizedContext = resizedCanvas.getContext("2d")
+
+      // Draw the original canvas onto the resized canvas
+      resizedContext.drawImage(qrCanvas, 0, 0, width, height)
+
+      const link = document.createElement("a")
 
       if (format === "png") {
-        downloadPng(qrSvg, "qr-kod", {
-          downloadPNGOptions: { scale: downloadSize / SIZE / 2 },
-          css: "none",
-        })
+        link.href = resizedCanvas
+          .toDataURL("image/png")
+          .replace("image/png", "image/octet-stream")
+        link.download = "qrkod.png"
       }
 
       if (format === "webp") {
-        const qrSvgCloned = qrSvg.cloneNode(true)
-        qrSvgCloned.id = "qr-kod-svg-cloned"
-        qrCodeRef.current.appendChild(qrSvgCloned)
-
-        toImg("#qr-kod-svg-cloned", "qr-kod", {
-          scale: downloadSize / SIZE,
-          format: "webp",
-          download: true,
-        }).then(() => {
-          qrCodeRef.current.removeChild(qrSvgCloned)
-        })
+        link.href = resizedCanvas
+          .toDataURL("image/webp")
+          .replace("image/webp", "image/octet-stream")
+        link.download = "qrkod.webp"
       }
+
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
     }
   }
 
   return (
     <div id="qr-kod" className="mx-auto justify-self-center lg:sticky lg:top-2">
-      <div ref={qrCodeRef} id="qr-kod-svg">
-        {logoUrl ? (
-          <QRCodeSVG
-            value={value}
-            size={SIZE}
-            bgColor={transparentBackground ? TRANSPARENT_BACKGROUND : bgColor}
-            fgColor={fgColor}
-            level={correctionLevel}
-            includeMargin={true}
-            imageSettings={{
-              src: logoUrl,
-              width: logoSize,
-              height: logoSize,
-              excavate: logoBackgroundTransparent,
-            }}
-          />
-        ) : (
-          <QRCodeSVG
-            value={value}
-            size={SIZE}
-            bgColor={transparentBackground ? TRANSPARENT_BACKGROUND : bgColor}
-            fgColor={fgColor}
-            level={correctionLevel}
-            includeMargin={true}
-          />
-        )}
+      <div ref={qrCodeRef} id="qr-kod-canvas" className="aspect-square">
+        <QRCode
+          value={value}
+          size={SIZE}
+          bgColor={transparentBackground ? TRANSPARENT_BACKGROUND : bgColor}
+          fgColor={fgColor}
+          ecLevel={correctionLevel}
+          eyeColor={colorfulCorners ? eyeColor : DEFAULT_COLORS}
+          logoImage={logoUrl}
+          logoWidth={logoSize}
+          logoHeight={(logoSize / logoRatio).toFixed(2)}
+          removeQrCodeBehindLogo={logoBackgroundTransparent}
+        />
       </div>
 
       <div className="print-hide mt-2 flex items-center gap-1">
@@ -131,15 +118,6 @@ const QrCode = () => {
           }}
         >
           <span>WEBP</span>
-          <ArrowDownCircleIcon className={buttonIconClassNames} />
-        </Button>
-        <Button
-          icon={true}
-          onClick={() => {
-            handleDownload("svg")
-          }}
-        >
-          <span>SVG</span>
           <ArrowDownCircleIcon className={buttonIconClassNames} />
         </Button>
         <Button

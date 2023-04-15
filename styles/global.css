@@ -116,10 +116,16 @@
     @apply text-gray-800;
   }
 
-  #qr-kod-svg {
+  #qr-kod-canvas {
     margin: auto;
     overflow: hidden;
     max-height: 350px;
+  }
+
+  #qr-kod-canvas canvas {
+    max-width: 350px !important;
+    height: auto !important;
+    width: 100% !important;
   }
 
   ::selection {
@@ -132,8 +138,8 @@
       visibility: hidden;
     }
 
-    #qr-kod-svg,
-    #qr-kod-svg * {
+    #qr-kod-canvas,
+    #qr-kod-canvas * {
       visibility: visible;
       margin: auto;
     }

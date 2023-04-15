@@ -44,6 +44,10 @@ const useQrStore = create(set => ({
   setLogoSize: value => {
     set({ logoSize: value })
   },
+  logoRatio: 1,
+  setLogoRatio: value => {
+    set({ logoRatio: value })
+  },
   logoBackgroundTransparent: DEFAULT_LOGO_SETTINGS.logoBackgroundTransparent,
   setLogoBackgroundTransparent: value => {
     set({ logoBackgroundTransparent: value })

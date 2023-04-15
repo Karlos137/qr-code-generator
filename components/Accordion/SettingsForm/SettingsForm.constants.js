@@ -1,7 +1,7 @@
 export const DEFAULT_SETTINGS = {
   correctionLevel: {
-    label: "H - 30%",
-    value: "H",
+    label: "M - 15%",
+    value: "M",
   },
   size: {
     label: "400px",
