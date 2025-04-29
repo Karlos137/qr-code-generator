@@ -42,6 +42,18 @@ const InfoCards = () => {
           informace.
         </p>
       </Card>
+      <Card orientation="right" id="proc-pouzivat-qr-kod">
+        <h2 className="mb-2 text-[1.3125rem] font-medium lg:mb-4">
+          Proč používat QR kód?
+        </h2>
+        <p className="mb-4">
+          QR kódy se hodí všude tam, kde chceš rychle sdílet informace –
+          například na vizitkách, plakátech, pozvánkách nebo fakturách. Lze do
+          nich zakódovat například webovou adresu, e-mail, telefonní číslo,
+          Wi-Fi připojení nebo libovolný text. Pak QR kód stačí jen naskenovat a
+          informace se okamžitě zobrazí nebo provedou požadovanou akci.
+        </p>
+      </Card>
     </div>
   )
 }

@@ -17,6 +17,14 @@ const NavList = () => {
           Co je to QR kód?
         </a>
       </li>
+      <li>
+        <a
+          className="text-lg text-sky-600 hover:text-orange-500"
+          href="#proc-pouzivat-qr-kod"
+        >
+          Proč používat QR kód?
+        </a>
+      </li>
     </ul>
   )
 }
